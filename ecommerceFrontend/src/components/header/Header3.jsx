@@ -103,7 +103,7 @@ const list = (anchor) => (
   return (
     <Container sx={{display:"flex", alignItems: "center", justifyContent: "space-between"}}>
 
-      {/* <Stack alignItems={"center"} direction={"row"} display={"flex"}> */}
+
       <Button variant="contained" sx={{
         width: 222,
         bgcolor: theme.palette.header3.main,
