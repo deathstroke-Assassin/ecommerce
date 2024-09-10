@@ -23,7 +23,7 @@ export const getDesignTokens = (mode) => ({
             main: "#1af",
           },
           header1: {
-            main: "#6482AD",
+            main: "#64c2eD",
           },
           hot: {
             main: "#1af",
@@ -44,6 +44,9 @@ export const getDesignTokens = (mode) => ({
           paperGrey: {
             main: "#f5f5f5",
           },
+          bggrey: {
+            main: "#f1f1f1",
+          },
         }
       : {
           // palette values for dark mode
@@ -61,7 +64,7 @@ export const getDesignTokens = (mode) => ({
             main: "#021526",
           },
           header1: {
-            main: "#03346E",
+            main: "#e3a40E",
           },
           hot: {
             main: "#1af",
@@ -70,10 +73,13 @@ export const getDesignTokens = (mode) => ({
             main: "#03346E",
           },
           header3: {
-            main: "#03346E",
+            main: "#83346E",
           },
           paperGrey: {
             main: "#212121",
+          },
+          bggrey: {
+            main: "#1d2021",
           },
         }),
   },

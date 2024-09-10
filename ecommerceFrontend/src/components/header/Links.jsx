@@ -1,12 +1,17 @@
 import { ArrowRightAltOutlined, ArrowRightOutlined, ArrowRightSharp, ExpandMore, KeyboardArrowRightOutlined } from "@mui/icons-material";
-import { Box, ListItem, ListItemButton, ListItemText, Paper, Typography } from "@mui/material";
+import { Box, ListItem, ListItemButton, ListItemText, Menu, Paper, Typography } from "@mui/material";
 import List from '@mui/material/List';
 import { useTheme } from '@emotion/react';
+import { useState } from "react";
 
 export default function Links({title}) {
     
     const theme = useTheme()
-
+    
+    
+    
+    
+    
     return (
         <Box sx={{position: "relative", display: "flex", alignContent: "center",
             ":hover .show-in-hover": {display: "block"},
@@ -17,19 +22,20 @@ export default function Links({title}) {
             <ExpandMore />
 <Paper className="show-in-hover"
 sx={{ position: "absolute", top: "100%", transform: "translateX(-50%)", display: "none",
-    minWidth: "150px", left: "50%"
+    minWidth: "150px", left: "50%", zIndex: 10 
 }}>
     
                 <nav aria-label="secondary folders">
+        
                     <List>
                         <ListItem disablePadding>
-                            <ListItemButton>
+                            <ListItemButton >
                                 <ListItemText sx={{".MuiTypography-root": {fontSize: "15px"}, }} primary="Dashboard" />
                             </ListItemButton>
                         </ListItem>
 
 
-                        <ListItem disablePadding sx={{ position:"relative", display: "flex", alignContent: "center",
+                        <ListItem  disablePadding sx={{ position:"relative", display: "flex", alignContent: "center",
             
         }}>
             <Box sx={{minWidth: "150px", ":hover .aswsasa": {display: "block"}}}>
@@ -72,20 +78,6 @@ sx={{ position: "absolute", top: "100%", transform: "translateX(-50%)", display:
                         </ListItem>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         <ListItem disablePadding>
                             <ListItemButton>
                                 <ListItemText sx={{".MuiTypography-root": {fontSize: "15px"}, }} primary="Orders" />
@@ -97,8 +89,13 @@ sx={{ position: "absolute", top: "100%", transform: "translateX(-50%)", display:
                             </ListItemButton>
                         </ListItem>
                     </List>
+
                 </nav>
 </Paper>
         </Box>
     );
 }
+function setSelectedIndex(index) {
+    throw new Error("Function not implemented.");
+}
+

@@ -6,5 +6,15 @@
   font-weight: 400;
   font-style: normal;
 };
+.border {
+  border: 4px solid #d00 !important;
+}
 
-
+.MyButton {
+  border-radius: 5px !important;
+  border: 1px solid #888 !important;
+  text-transform: capitalize !important;
+  padding-top: 7px !important;
+  padding-bottom: 7px !important;
+  font-size: 16px !important;
+}
