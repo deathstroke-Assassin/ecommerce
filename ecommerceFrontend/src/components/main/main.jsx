@@ -2,6 +2,8 @@ import {
     Box,
     Button,
     Container,
+    IconButton,
+    Modal,
     Rating,
     Stack,
     Typography,
@@ -15,117 +17,199 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
+import { Close } from "@mui/icons-material";
+import ProductDetials from "./ProductDetials";
+import { useGetproductByNameQuery } from "../../Redux/product";
+
+
 export default function Main() {
-    const [alignment, setAlignment] = useState("left");
+
+    //API links to backend
+    const allproductsAPI = 'products?populate=*'
+    const MenproductsAPI = 'products?populate=*&filters[productCategory][$eq]=men'
+    const WomenproductsAPI = 'products?populate=*&filters[productCategory][$eq]=women'
+
+
+        // react useState to filter items by category
+        const [myData, setmyData] = useState(allproductsAPI)
+
+    const { data, error, isLoading } = useGetproductByNameQuery(myData)
+//
+
+
+
+
     const theme = useTheme();
-    const handleAlignment = (event, newAlignment) => {
-        setAlignment(newAlignment);
+    const handleAlignment = (event, newValue) => {
+        setmyData(newValue);
     };
 
+   
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+  
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        minWidth: {xs: "100%", md: "60%"},
+        minHeight: {xs: "100%", md: "60%"},
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      };
+      
+if (isLoading) {
     return (
-        <Container sx={{ mt: 3 }}>
-            <Stack
-                direction={"row"}
-                justifyContent={"space-between"}
-                flexWrap={"wrap"}
-                gap={3}
-            >
-                <Box>
-                    <Typography variant="h6"> Selected Products </Typography>
-                    <Typography fontWeight={"300"} variant="body1">
-                        All our new Arrivals in an exclusive brand selection
-                    </Typography>
-                </Box>
-
-                <Box>
-                    <ToggleButtonGroup
-                        value={alignment}
-                        exclusive
-                        onChange={handleAlignment}
-                        aria-label="text alignment"
-                        color="success"
-                        sx={{
-                            ".Mui-selected": {
-                                border: "1px solid rgba(33, 239, 26, 0.5) !important",
-                                color: "limegreen",
-                                backgroundColor: "initial",
-                            },
-                        }}
-                    >
-                        <ToggleButton
-                            sx={{ color: theme.palette.text.primary }}
-                            className="MyButton"
-                            value="left"
-                            aria-label="left aligned"
-                        >
-                            All products
-                        </ToggleButton>
-                        <ToggleButton
-                            sx={{ mx: "16px !important", color: theme.palette.text.primary }}
-                            className="MyButton"
-                            value="center"
-                            aria-label="centered"
-                        >
-                            Men Category
-                        </ToggleButton>
-                        <ToggleButton
-                            sx={{ color: theme.palette.text.primary }}
-                            className="MyButton"
-                            value="right"
-                            aria-label="right aligned"
-                        >
-                            Women Category
-                        </ToggleButton>
-                    </ToggleButtonGroup>
-                </Box>
-            </Stack>
-
-            <Stack direction={"row"} gap={3} flexWrap={"wrap"}>
-
-{["acx", "bcx", "ca"].map((iteE) => {
-    return (
-        <Card key={iteE} sx={{ maxWidth: 345, mt: 6 }}>
-        <CardMedia
-            sx={{ height: 270 }}
-            image="https://mui.com/static/images/cards/contemplative-reptile.jpg"
-            title="green iguana"
-        />
-        <CardContent>
-            <Stack
-                direction={"row"}
-                justifyContent={"space-between"}
-                alignItems={"center"}
-            >
-                <Typography gutterBottom variant="h5" component="div">
-                    T-shirt
-                </Typography>
-
-                <Typography gutterBottom variant="subtitle1" component="p">
-                    $14.98
-                </Typography>
-            </Stack>
-            <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-            </Typography>
-        </CardContent>
-
-        <CardActions sx={{justifyContent:"space-between"}}>
-        <Button sx={{textTransform:"capitalize"}} size="large">
-        <AddShoppingCartRoundedIcon sx={{mr: 2}}/>
-            add to cart
-        </Button>
-            
-        <Button sx={{textTransform:"capitalize"}} size="large">
-        <Rating precision={0.5} name="read-only" value={3.5} readOnly />
-            </Button>
-        </CardActions>
-    </Card>
+        <Typography>Loading...</Typography>
     )
-})}
+}
 
+if (error) {
+    <Typography>{error.
+// @ts-ignore
+    message}</Typography>
+}
 
-        </Stack>
-        </Container>
-    );
+      if (data) {
+        return (
+            <Container sx={{ mt: 3, paddingBottom: 6 }}>
+                <Stack
+                    direction={"row"}
+                    justifyContent={"space-between"}
+                    flexWrap={"wrap"}
+                    gap={3}
+                >
+                    <Box>
+                        <Typography variant="h6"> Selected Products </Typography>
+                        <Typography fontWeight={"300"} variant="body1">
+                            All our new Arrivals in an exclusive brand selection
+                        </Typography>
+                    </Box>
+    
+                    <Box>
+                        <ToggleButtonGroup
+                            value={myData}
+                            exclusive
+                            onChange={handleAlignment}
+                            aria-label="text alignment"
+                            color="success"
+                            sx={{
+                                ".Mui-selected": {
+                                    border: "1px solid rgba(33, 239, 26, 0.5) !important",
+                                    color: "limegreen",
+                                    backgroundColor: "initial",
+                                },
+                            }}
+                        >
+                            <ToggleButton
+                                sx={{ color: theme.palette.text.primary }}
+                                className="MyButton"
+                                value={allproductsAPI}
+                                aria-label="left aligned"
+                            >
+                                All products
+                            </ToggleButton>
+                            <ToggleButton
+                                sx={{ mx: "16px !important", color: theme.palette.text.primary }}
+                                className="MyButton"
+                                value={MenproductsAPI}
+                                aria-label="centered"
+                            >
+                                Men Category
+                            </ToggleButton>
+                            <ToggleButton
+                                sx={{ color: theme.palette.text.primary }}
+                                className="MyButton"
+                                value={WomenproductsAPI}
+                                aria-label="right aligned"
+                            >
+                                Women Category
+                            </ToggleButton>
+                        </ToggleButtonGroup>
+                    </Box>
+                </Stack>
+    
+                <Stack direction={"row"} gap={3} flexWrap={"wrap"}>
+    
+    {data.data.map((item) => {
+          console.log()
+        return (
+            <Card key={item} sx={{ maxWidth: 345, mt: 6,
+                ":hover .MuiCardMedia-root": {rotate: "-1deg", transition:".4s",scale:"1.1"},
+             }}
+            >
+            <CardMedia
+                sx={{ height: 270 }}
+                // @ts-ignore
+                image={`${import.meta.env.VITE_BASE_URL}${item.attributes.productImg.data[2].attributes.url}`}
+                title={item.attributes.productTitle}
+            />
+            <CardContent>
+                <Stack
+                    direction={"row"}
+                    justifyContent={"space-between"}
+                    alignItems={"center"}
+                >
+                    <Typography gutterBottom variant="h5" component="div">
+                        {item.attributes.productTitle}
+                    </Typography>
+    
+                    <Typography gutterBottom variant="subtitle1" component="p">
+                        ${item.attributes.productPrice}
+                    </Typography>
+                </Stack>
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>{item.attributes.productDescription}
+                </Typography>
+            </CardContent>
+    
+            <CardActions sx={{justifyContent:"space-between"}}>
+            <Button  onClick={handleOpen}
+             sx={{textTransform:"capitalize"}} size="large">
+            <AddShoppingCartRoundedIcon sx={{mr: 2}}/>
+                add to cart
+            </Button>
+                
+            <Button sx={{textTransform:"capitalize"}} size="large">
+            <Rating precision={0.5} name="read-only" value={item.attributes.productRating} readOnly />
+                </Button>
+            </CardActions>
+        </Card>
+        )
+    })}
+    
+    
+    
+    
+    <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style}>
+                
+        <IconButton onClick={handleClose} sx={{ position:"fixed", right: "8px", top:"8px",
+          ":hover": {rotate: "180deg", transition: "0.3s", color: "#f00"}
+        }}>
+        <Close>
+    
+        </Close>
+        </IconButton>
+    
+    
+    <ProductDetials />
+    
+    
+            </Box>
+          </Modal>
+    
+            </Stack>
+            </Container>
+        );
+      }
+
 }

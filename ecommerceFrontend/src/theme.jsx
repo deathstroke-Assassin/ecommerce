@@ -73,7 +73,7 @@ export const getDesignTokens = (mode) => ({
             main: "#03346E",
           },
           header3: {
-            main: "#83346E",
+            main: "#93b460",
           },
           paperGrey: {
             main: "#212121",
