@@ -77,7 +77,7 @@ export default function Header1() {
     <Box flexGrow={1} />
 
 
-        <div>
+        <Stack>
     {theme.palette.mode === "light" ? (
       <IconButton
         onClick={() => {
@@ -105,7 +105,7 @@ export default function Header1() {
         <DarkModeOutlined />
       </IconButton>
     )}
-  </div>
+  </Stack>
   <List
         component="nav"
         aria-label="Device settings"

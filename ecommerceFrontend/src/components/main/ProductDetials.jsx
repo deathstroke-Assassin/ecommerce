@@ -1,42 +1,84 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+/* eslint-disable react/prop-types */
+import { Box, Button, Stack, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
-import { useGetproductByNameQuery } from "../../Redux/product";
+import { useState } from "react";
 
-export default function ProductDetials() {
-  const { data, error, isLoading } = useGetproductByNameQuery('products?populate=*')
+export default function ProductDetials({ClickedProduct}) {
+  const [selectedImg, setselectedImg] = useState(0)
+  const [setAlignment] = useState('left');
+  const handleAlignment = (event, newAlignment) => {
+    if (newAlignment !== null) {
+      setAlignment(newAlignment);
+    }
+  };
   return (
     <Stack direction={"row"} sx={{display:"flex", flexDirection:{xs: "column", sm: "row"}}}>
         
         
             <Box sx={{display:"flex",mr: 5}} >
-                <img width={350} src={`${import.meta.env.VITE_BASE_URL}${data.data[0].attributes.productImg.data[0].attributes.url}`} alt=""  />
+                <img width={350} src={`${ClickedProduct.attributes.productImg.data[selectedImg].attributes.url}`} alt=""  />
             </Box>
             <Box>
         <Typography variant="h5">
-        Men's Fashion
+        {ClickedProduct.attributes.productTitle}
         
         </Typography>
         <Typography color="#a90101"fontWeight={600} fontSize={"20px"} variant="h6">
-       
-        $23.59
+      
+        ${ClickedProduct.attributes.productPrice}
         </Typography>
 
         
-        <Typography id="modal-modal-title" variant="h6" component="h2">
-        Cotton Flap Pocket Drawstring Waist Cargo Jeans
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          Baggy Long Washed Denim Joggers Jean Plain Black Party Punk Rock Friends
+        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+          {ClickedProduct.attributes.productDescription}
           </Typography>
 
         <Stack direction={"row"} gap={3} marginTop={3}>
-{import.meta.env.VITE_BASE_URL}${data.data[0].attributes.productImg.data.map((item) => {
-    return (
+
+        <ToggleButtonGroup
+      value={selectedImg}
+      exclusive
+      onChange={handleAlignment}
+      aria-label="text alignment"
+      sx={{
         
-        <img  width={150} key={item} src={`${item}`} />
+        ".Mui-selected": {
+          border: "1px solid  !important",
+          color: "limegreen",
+          opacity:"1"
+      }}}
+    >
+
+{ClickedProduct.attributes.productImg.data.map((item, index) => {
+    return (
+      <ToggleButton key={item.id}
+      value={index}
+      sx={{
+        width:"150px",
+        height:"200px",
+        mx:2,
+        p:0,
+        opacity:"0.5"
+      }}
+      >
+
+
+      <img
+        width={"100%"}
+        height={"100%"}
+        src={`${item.attributes.url}`}
+        onClick={() => {
+          setselectedImg(index)
+        }}
+        />
+
+    </ToggleButton>
         
     )
 })}
+
+
+</ToggleButtonGroup>
         </Stack>
 
         <Button variant="contained"

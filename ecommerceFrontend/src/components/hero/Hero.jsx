@@ -23,7 +23,7 @@ export default function Hero() {
             className="mySwiper"
         >
             <SwiperSlide>
-                <img src="src\images\pexels-joshsorenson-1714208.jpg" />
+                <img src=".\images\pexels-joshsorenson-1714208.jpg" />
     
                 <Box>
                     <Typography sx={{position:"absolute", left: "8%" , top: "60%",
@@ -49,7 +49,7 @@ export default function Hero() {
                 </Button>
             </SwiperSlide>
             <SwiperSlide>
-                <img src="src\images\pexels-designecologist-1328545.jpg" />
+                <img src=".\images\pexels-designecologist-1328545.jpg" />
     
                 <Box>
                     <Typography sx={{position:"absolute", left: "30%" , top: "80%",
@@ -62,7 +62,7 @@ export default function Hero() {
             </SwiperSlide>
             
             <SwiperSlide>
-            <img src="src\images\pexels-olly-840916.jpg" />
+            <img src=".\images\pexels-olly-840916.jpg" />
     
             <Box>
                     <Typography sx={{position:"absolute", left: "8%" , top: "60%",
@@ -81,7 +81,7 @@ export default function Hero() {
             </SwiperSlide>
             
             <SwiperSlide>
-                <img src="src\images\pexels-rfera-432059.jpg" />
+                <img src=".\images\pexels-rfera-432059.jpg" />
                 <Box>
                     <Typography sx={{position:"absolute", left: "8%" , top: "80%",
                         color:"#fff", fontSize:"40px",fontWeight: 700,
@@ -92,7 +92,7 @@ export default function Hero() {
                 </Box>
             </SwiperSlide>
             <SwiperSlide>
-                <img src="src\images\pexels-thought-catalog-317580-904616.jpg" />
+                <img src=".\images\pexels-thought-catalog-317580-904616.jpg" />
                 <Box>
                     <Typography sx={{position:"absolute", left: "8%" , top: "6%",
                         color:"#6F4E37", fontSize:"40px",fontWeight: 700,
@@ -110,7 +110,7 @@ export default function Hero() {
             {useMediaQuery("(min-width:1200px)") && (
             <Box sx={{ml: 3}}>
                 <Box sx={{position:"relative"}}>
-                <img height={240} width={365} src="src\images\vecteezy_flat-lay-of-a-smartphone-mockup-with-headphones-and-leaf_1309411.jpg" />
+                <img height={240} width={365} src=".\images\vecteezy_flat-lay-of-a-smartphone-mockup-with-headphones-and-leaf_1309411.jpg" />
                 
                 <Box>
                     <Typography sx={{position:"absolute", left: "30%" , top: "10%",
@@ -146,7 +146,7 @@ export default function Hero() {
                 <Box sx={{mt: 1}} />
                     
                 <Box sx={{position:"relative"}}>
-                <img height={240} width={365} src="src\images\watch.png" />
+                <img height={240} width={365} src=".\images\watch.png" />
                 <Box>
                     <Typography sx={{position:"absolute", left: "8%" , top: "10%",
                         color:"#eee", fontSize:"25px",

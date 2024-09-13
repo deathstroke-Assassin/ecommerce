@@ -173,13 +173,13 @@ const list = (anchor) => (
 
       
       {useMediaQuery("(max-width:1200px)") && (
-        <IconButton sx={{
+        <IconButton onClick={toggleDrawer("right", true)} sx={{
         my: 3,
         display: "flex",
         justifyContent: "space-between",
         textAlign: "right"}}
         alignItems={"right"}>
-      <MenuIcon onClick={toggleDrawer("right", true)}/>
+      <MenuIcon />
 
       </IconButton>
       )
