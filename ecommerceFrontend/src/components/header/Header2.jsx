@@ -2,7 +2,6 @@ import { ExpandMore, ShoppingCartOutlined } from "@mui/icons-material";
 import { Container, IconButton, InputBase, Stack, Typography, } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import Badge from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useState } from "react";
@@ -12,6 +11,13 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useTheme } from "@emotion/react";
+import { Link } from "react-router-dom";
+import { useUserStore } from "../../stores/useUserStore";
+import { useCartStore } from "../../stores/useCartStore";
+import { LogIn, LogOut } from "lucide-react";
+
+import {  UserPlus,  Lock } from "lucide-react";
+
 
 
 const options = ['Clothes', 'Mobile Devices', 'Computer Components', "Accessories", "Musical Instruments"];
@@ -97,6 +103,12 @@ const handleClose = () => {
  
   const [selectedIndex, setSelectedIndex] = useState(0);
   const theme = useTheme()
+
+	const { user, logout } = useUserStore();
+	const isAdmin = user?.role === "admin";
+	const { cart } = useCartStore();
+
+
   return (
     <Container sx={{my: 3, display: "flex", justifyContent: "space-between"}}>
       <Stack alignItems={"center"}>
@@ -177,16 +189,15 @@ const handleClose = () => {
           </Search>
 <Stack alignItems={"center"} direction={"row"}>
   
-            <IconButton>
-              <PersonOutlinedIcon />
-            </IconButton>
+
   
             <IconButton aria-label="cart">
         <StyledBadge badgeContent={1} color="primary">
           <ShoppingCartIcon sx={{p: 0, m: 0}}/>
         </StyledBadge>
       </IconButton>
-  
+      
+
 </Stack>
 
     </Container>

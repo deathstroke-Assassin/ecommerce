@@ -1,31 +1,41 @@
 
 /* eslint-disable no-irregular-whitespace */
-import MenuIcon from '@mui/icons-material/Menu';
+
 import WindowIcon from '@mui/icons-material/Window';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { Box, Container, IconButton, ListItemText, Menu,  MenuItem, Stack, Typography, useMediaQuery, } from "@mui/material";
+import { Box, Container, IconButton,  ListItemText, Menu,  MenuItem,  Typography, } from "@mui/material";
 import Button from '@mui/material/Button';
 import { useTheme } from '@emotion/react';
 import { useState } from 'react';
-import ComputerIcon from '@mui/icons-material/Computer';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
-import CheckroomIcon from '@mui/icons-material/Checkroom';
-
-
-
-
+// import ComputerIcon from '@mui/icons-material/Computer';
+// import MenuBookIcon from '@mui/icons-material/MenuBook';
+// import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
+// import CheckroomIcon from '@mui/icons-material/Checkroom';
 import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
 import { Close } from '@mui/icons-material';
-import Links from './Links';
+
+import { useEffect } from "react";
+// import CategoryItem from "../../components/CategoryItem";
+import { useProductStore } from "../../stores/useProductStore";
+// import FeaturedProducts from "../../components/";
+import { Link, useParams } from "react-router-dom";
+
+const categories = [
+	{ href: "/", name: "categories", imageUrl: "" },
+	{ href: "/t-shirts", name: "T-shirts", imageUrl: "/tshirts.jpg" },
+	{ href: "/shoes", name: "Shoes", imageUrl: "/shoes.jpg" },
+	{ href: "/jeans", name: "Jeans", imageUrl: "/jeans.jpg" },
+	{ href: "/bags", name: "Bags", imageUrl: "/bags.jpg" },
+	{ href: "/glasses", name: "Glasses", imageUrl: "/glasses.png" },
+	{ href: "/jackets", name: "Jackets", imageUrl: "/jackets.jpg" },
+	{ href: "/suits", name: "Suits", imageUrl: "/suits.jpg" },
+];
 
 
-
+const WindowOptions = ["  categories",  't-shirts', 'shoes', 'jeans', "bags", "glasses", "jackets" , "Suits"];
 export default function Header3() {
+
 const theme = useTheme()
 const [selectedIndex, setSelectedIndex] = useState(0);
 const [anchorEl, setAnchorEl] = useState(null);
@@ -44,7 +54,6 @@ const handleClose = () => {
 };
 
 
-
 const [state, setState] = useState({
   top: false,
   left: false,
@@ -60,13 +69,18 @@ const toggleDrawer = (anchor, open) => (event) => {
   setState({ ...state, [anchor]: open });
 };
 
+const WindowOptionico = [<WindowIcon />, ]
 
+const {category} = useParams()
 
-const WindowOptions = ["  categories",  ' computing', ' books', 'gaming', "fashion", ];
-const WindowOptionico = [<WindowIcon />, <ComputerIcon />, <MenuBookIcon />, <VideogameAssetIcon />, <CheckroomIcon />]
+const { fetchFeaturedProducts, products, isLoading, fetchProductsByCategory } = useProductStore();
+useEffect(() => {
+  fetchFeaturedProducts();
+}, [fetchFeaturedProducts]);
 
-  
-
+useEffect(() => {
+  fetchProductsByCategory(category)
+}, [fetchProductsByCategory, category])
 
 const list = (anchor) => (
   <Box
@@ -75,35 +89,20 @@ const list = (anchor) => (
 
     onKeyDown={toggleDrawer(anchor, false)}
   >
-    <List>
-      {['Home', 'Account', 'Send email', 'Drafts'].map((text) => (
-        <ListItem key={text} disablePadding>
-          <ListItemButton>
-            <ListItemText primary={text} />
-            
-          </ListItemButton>
-        </ListItem>
-      ))}
-    </List>
     <Divider />
-    
     <IconButton onClick={toggleDrawer("right", false)} sx={{
       ":hover": {rotate: "180deg", transition: "0.3s", color: "#f00"}
     }}>
     <Close>
-
     </Close>
     </IconButton>
   </Box>
 );
 
-
-
+const categoryLink = `category${categories[selectedIndex].href}`;
 
   return (
     <Container sx={{display:"flex", alignItems: "center", justifyContent: "space-between"}}>
-
-
       <Button variant="contained" sx={{
         width: 222,
         bgcolor: theme.palette.header3.main,
@@ -111,25 +110,41 @@ const list = (anchor) => (
         ".MuiTypography-root": {justifyContent: "space-between", marginRight: 3},
       }}
       onClick={handleClickListItem}>
-      {/* <WindowIcon /> */}
+
         <Typography sx={{
           padding: 0,
           textTransform: "capitalize",
           mx: 1
         }}
-        >  
+        >
         <ListItemText   sx={{ width: 120, textAlign: "center", mr: 1, '.MuiTypography-root' : {fontSize: '20px'},display: "flex",
         ".uiListItemText-root": {display: "flex", justifyContent: "space-between", marginRight: 3}, 
       }}
           primary={WindowOptionico[selectedIndex]}
           secondary={WindowOptions[selectedIndex]}
-      />     
+      />  
+
           </Typography>
           <Box   flexGrow={1}  ></Box>
         <ChevronRightIcon 
         />
+        
       </Button>
-
+      
+      <Button>
+      
+{!isLoading && <Link
+                  to={categoryLink}
+                  style={{
+                    padding: '10px 10px',
+                    fontSize: '16px',
+                  }}
+                >
+              <Button  > 
+                <Typography>Go to {categories[selectedIndex].name}</Typography>
+              </Button>
+                </Link>}
+      </Button>
       <Menu
         id="lock-menu"
         anchorEl={anchorEl}
@@ -148,45 +163,10 @@ const list = (anchor) => (
             
             onClick={(event) => handleMenuItemClick(event, index)}
           >
-          
           {WindowOptionico[index]}   {option}
           </MenuItem>
-          
         ))}
       </Menu>
-
-
-      
-      
-  
-      {useMediaQuery("(min-width:1200px)") && (
-      <Stack gap={4} direction={"row"} alignItems={"center"}>
-
-          <Links title={"Home"} />
-          <Links title={"pages"} />
-          <Links title={"User Account"} />
-          <Links title={"Vendor account"} />
-        
-      </Stack>
-      )}
-      
-
-      
-      {useMediaQuery("(max-width:1200px)") && (
-        <IconButton onClick={toggleDrawer("right", true)} sx={{
-        my: 3,
-        display: "flex",
-        justifyContent: "space-between",
-        textAlign: "right"}}
-        alignItems={"right"}>
-      <MenuIcon />
-
-      </IconButton>
-      )
-      }
-
-
-      
   <Drawer
   anchor={"right"}
   open={state["right"]}
@@ -195,10 +175,8 @@ const list = (anchor) => (
   {list("right")}
 </Drawer>
 
-
-  {/* </Stack> */}
-
-</Container>
-
-  )
-}
+<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
+					
+				</div>
+        </Container>
+)}

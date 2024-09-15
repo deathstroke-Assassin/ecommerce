@@ -40,9 +40,10 @@ export default function Header1() {
     return (
     <Box sx={{
         // @ts-ignore
-        bgcolor: theme.palette.header1.main,
+       
         borderBottomRightRadius: '6px',
-        borderBottomLeftRadius: '6px'
+        borderBottomLeftRadius: '6px',
+        mt: 4,
     }}>
 
 
