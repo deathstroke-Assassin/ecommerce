@@ -26,14 +26,14 @@ const categories = [
 	{ href: "/t-shirts", name: "T-shirts", imageUrl: "/tshirts.jpg" },
 	{ href: "/shoes", name: "Shoes", imageUrl: "/shoes.jpg" },
 	{ href: "/jeans", name: "Jeans", imageUrl: "/jeans.jpg" },
-	{ href: "/bags", name: "Bags", imageUrl: "/bags.jpg" },
+	{ href: "/Accessories", name: "Accessories", imageUrl: "/Accessories.jpg" },
 	{ href: "/glasses", name: "Glasses", imageUrl: "/glasses.png" },
 	{ href: "/jackets", name: "Jackets", imageUrl: "/jackets.jpg" },
 	{ href: "/suits", name: "Suits", imageUrl: "/suits.jpg" },
 ];
 
 
-const WindowOptions = ["  categories",  't-shirts', 'shoes', 'jeans', "bags", "glasses", "jackets" , "Suits"];
+const WindowOptions = ["  categories",  't-shirts', 'shoes', 'jeans', "Accessories", "glasses", "jackets" , "Suits"];
 export default function Header3() {
 
 const theme = useTheme()

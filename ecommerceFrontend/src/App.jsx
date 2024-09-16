@@ -4,6 +4,7 @@ import SignUpPage from "./components/SignUpPage/SignUpPage";
 import LogInPage from "./components/LogInPage/LogInPage";
 import AdminPage from "./components/AdminPage/AdminPage";
 import CategoryPage from "./components/CategoryPage/CategoryPage";
+import AllCategoriesPage from "./components/CategoryPage/AllCategoriesPage";
 
 import { CircularProgress, CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
@@ -69,6 +70,7 @@ useEffect(() => {
         <Route path="/login" element={user ? <HomePage /> : <LogInPage />} />
         <Route path="/secret-dashboard" element={user?.role === "admin" ? <AdminPage /> : <HomePage />} />
         <Route path="/category/:category" element={ <CategoryPage />} />
+        <Route path="/category" element={ <AllCategoriesPage />} />
         </Routes>
         </div>
 			<Toaster />

@@ -47,6 +47,8 @@ if (isLoading) {
                                     transition={{ duration: 1.5, type:"spring",stiffness: 50}}
                                     key={product} sx={{
                                         maxWidth: 345, mt: 6,
+                                        maxHeight: 550,
+                                        minHeight: 550,
                                         ":hover .MuiCardMedia-root": { rotate: "-1deg", transition: ".4s", scale: "1.1" },
                                     }}
                                 >
@@ -56,28 +58,28 @@ if (isLoading) {
                                         image={`${product.image}`}
                                         title={product.name}
                                     />
-                                    <CardContent>
+                                    <CardContent sx={{ position: "relative" }}>
                                         <Stack
                                             direction={"row"}
                                             justifyContent={"space-between"}
                                             alignItems={"center"}
                                         >
-                                            <Typography gutterBottom variant="h5" component="div">
+                                            <Typography sx={{ fontWeight: "bold", }} gutterBottom variant="h5" component="div">
                                                 {product.name}
                                             </Typography>
                                             <Typography gutterBottom variant="subtitle1" component="p">
                                                 ${product.price}
                                             </Typography>
                                         </Stack>
-                                        <Typography variant="body2" sx={{ color: "text.secondary" }}>{product.description}
+                                        <Typography variant="body2" sx={{ color: "text.secondary", maxHeight: 50 }}>{product.description}
                                         </Typography>
                                     </CardContent>
                                     <CardActions sx={{ justifyContent: "space-between" }}>
-                                        <Button onClick={() => {
+                                        <Button  onClick={() => {
                                             handleOpen()
                                             setClickedProduct(product)
                                         }}
-                                            sx={{ textTransform: "capitalize" }} size="large">
+                                            sx={{ textTransform: "capitalize",position: "absolute", bottom: "10px" }} size="large">
                                             <AddShoppingCartRoundedIcon sx={{ mr: 2 }} />
                                             add to cart
                                         </Button>
@@ -97,8 +99,8 @@ if (isLoading) {
                                                 </IconButton>
                                             </Box>
                                         </Modal>
-                                        <Button sx={{ textTransform: "capitalize" }} size="large">
-                                            <Rating precision={0.5} name="read-only" value={0} readOnly />
+                                        <Button sx={{ textTransform: "capitalize", position: "absolute", bottom: "10px", right: "10px" }} size="large">
+                                            <Rating precision={0.5} name="read-only" value={product.rating} readOnly />
                                         </Button>
                                     </CardActions>
                                 </Card>
