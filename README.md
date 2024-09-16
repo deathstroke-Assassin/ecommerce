@@ -40,7 +40,8 @@ This project is a full-stack e-commerce web application built using modern web t
 
 
 ## Install dependencies:
-npm install 
+npm install or npm i (in the backend folder)
+npm install or npm i (in the ecommercefrontend folder)
 
 ## Set up environment variables:
 Create a .env file in the root directory and add the following:
