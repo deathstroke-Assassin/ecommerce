@@ -3,6 +3,7 @@ import { useProductStore } from "../../stores/useProductStore"
 import { useParams } from "react-router-dom"
 import { motion } from "framer-motion";
 import ProductCard from "../../components/ProductCard";
+import { Box, Stack } from "@mui/material";
 
 
 const CategoryPage = () => {
@@ -21,7 +22,7 @@ const CategoryPage = () => {
 
     console.log("products filtered:", category , products)
     return (
-        <div>
+        <Stack direction={"column"} justifyContent={"center"} sx={{display:"flex", alignItems:"center", gap: 6 ,  flexDirection:{xs: "column", sm: "row"}}}>
 
         <div>
         
@@ -40,7 +41,10 @@ const CategoryPage = () => {
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.8, delay: 0.2 }}
+					
 				>
+					<Box direction={"row"} justifyContent={"center"} gap={6} >
+					<Stack direction={"row"} justifyContent={"center"} gap={6}>
 					 {products?.length === 0 && (
 						<h2 className='text-3xl font-semibold text-gray-300 text-center col-span-full'>
 							No products found
@@ -51,11 +55,14 @@ const CategoryPage = () => {
 					{ products.length > 0 && products?.map((product) => (
 						<ProductCard key={product._id} product={product} />
 					))}
+
+					</Stack> 
+					</Box>
 				</motion.div>
         
     </div>
     
-</div>
+</Stack>
   )
 }
 

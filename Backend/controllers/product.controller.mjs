@@ -35,7 +35,7 @@ export const getFeaturedProducts = async (req, res) => {
 
 export const createProduct = async (req, res) => {
     try {
-        const {name, price, description, image, category, isFeatured} = req.body;
+        const {name, price, description, image, rating, category, isFeatured} = req.body;
         let cloudinaryResponse = null
         if (image) {
             cloudinaryResponse = await cloudinary.uploader.upload(image, {folder:"products"});
@@ -44,7 +44,8 @@ export const createProduct = async (req, res) => {
             name, price, description,
             image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : "" ,
             category,
-            isFeatured});
+            isFeatured,
+            rating});
         res.status(201).json({product});
     } catch (error) {
         console.log("Error in createProduct controller", error.message)

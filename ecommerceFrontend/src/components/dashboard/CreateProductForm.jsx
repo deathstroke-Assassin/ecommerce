@@ -12,7 +12,7 @@ const categories = [
     "glasses",
     "jackets",
     "suits",
-    "bags",
+    "Accessories",
 ];
 
 const CreateProductForm = () => {
@@ -22,6 +22,7 @@ const CreateProductForm = () => {
         price: "",
         category: "",
         image: "",
+        rating:"",
     });
 
     const { createProduct, loading } = useProductStore();
@@ -36,6 +37,7 @@ const CreateProductForm = () => {
                 price: "",
                 category: "",
                 image: "",
+                rating:"",
             });
         } catch {
             console.log("error creating a product");
@@ -142,6 +144,29 @@ const CreateProductForm = () => {
                             className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm 
 						py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500
 						 focus:border-emerald-500"
+                            required
+                            sx={{ ml: 10, mt: 3 }}
+                        />
+                    </div>
+                    <div>
+                        <label
+                            htmlFor="rating"
+                            className="block text-sm font-medium text-gray-300"
+                        >
+                            Rating
+                        </label>
+                        <Input
+                            type="number"
+                            id="rating"
+                            name="rating"
+                            value={newProduct.rating}
+                            onChange={(e) =>
+                                setNewProduct({ ...newProduct, rating: e.target.value })
+                            }
+                            
+                            className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm 
+						py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500
+					focus:border-emerald-500"
                             required
                             sx={{ ml: 10, mt: 3 }}
                         />

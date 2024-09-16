@@ -86,6 +86,7 @@ const ProductsList = () => {
   const paginationModel = { page: 0, pageSize: 5 };
   
   return (
+
     <motion.div
       className='bg-gray-800 shadow-lg rounded-lg overflow-hidden max-w-4xl mx-auto'
       initial={{ opacity: 0, y: 20 }}
@@ -94,7 +95,7 @@ const ProductsList = () => {
     
     >
 
-<Paper sx={{ height: 700, width: '70%', position: "relative", left: 0, 
+<Paper sx={{ height: 700, width: '70%', position: "relative", left: 0,
       background: 'radial-gradient(ellipse at top, rgba(00, 129, 185, 0.5) 0%, rgba(0, 60, 80, 0.2) 45%, rgba(255, 255, 255, 0.121) 100%)'
 
  }}>
@@ -105,7 +106,7 @@ const ProductsList = () => {
         initialState={{ pagination: { paginationModel } }}
         pageSizeOptions={[5, 10]}
         checkboxSelection
-        sx={{ border: 0, minHeight: 900,
+        sx={{ border: 0, minHeight: 700,
           backgroundColor: 'transparent',
     }}
       />
@@ -115,6 +116,7 @@ const ProductsList = () => {
 
 
     </motion.div>
+
   );
 };
 
