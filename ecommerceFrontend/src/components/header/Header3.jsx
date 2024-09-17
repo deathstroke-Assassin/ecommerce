@@ -47,6 +47,7 @@ const [anchorEl, setAnchorEl] = useState(null);
 const handleMenuItemClick = (event, index) => {
   setSelectedIndex(index);
   setAnchorEl(null);
+  
 };
 
 const handleClose = () => {
@@ -131,7 +132,6 @@ const categoryLink = `category${categories[selectedIndex].href}`;
         
       </Button>
       
-      <Button>
       
 {!isLoading && <Link
                   to={categoryLink}
@@ -140,11 +140,15 @@ const categoryLink = `category${categories[selectedIndex].href}`;
                     fontSize: '16px',
                   }}
                 >
-              <Button  > 
+                  <Button variant="outlined" sx={{textTransform: "capitalize",    
+                  color: 'lemonchiffon',
+                  mr: 94
+}}>
+
                 <Typography>Go to {categories[selectedIndex].name}</Typography>
               </Button>
                 </Link>}
-      </Button>
+
       <Menu
         id="lock-menu"
         anchorEl={anchorEl}

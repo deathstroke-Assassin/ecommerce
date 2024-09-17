@@ -9,11 +9,13 @@ import Hero from "../hero/Hero";
 import Main from "../main/main";
 import Footer from "../footer/Footer";
 import Scroll from "../scroll/Scroll";
+import { useProductStore } from "../../stores/useProductStore";
 
 
 
 
 const HomePage = () => {
+    const { products, isLoading, error } = useProductStore();
     
     const theme = useTheme();
     return (
@@ -25,7 +27,19 @@ const HomePage = () => {
     <Header3/>
     <Box sx={{}}>
             <Hero />
-            <Main />
+
+        { (products)? 
+                <Main
+                products={products}
+                >
+                </Main>
+              :
+                <div>
+                    {console.log("fuck >?")}
+                    <Typography variant="h5">Loading...</Typography>
+                </div>
+                
+                }
 </Box>
 <Box sx={{}}>
 <Footer></Footer>

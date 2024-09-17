@@ -1,22 +1,53 @@
-import { ShoppingCart, UserPlus, LogIn, LogOut, Lock, MenuIcon } from "lucide-react";
+//router
 import { Link } from "react-router-dom";
+//icons and themes
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import {  UserPlus, LogIn, LogOut, Lock, MenuIcon } from "lucide-react";
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import { Close } from "@mui/icons-material";
+import Badge from '@mui/material/Badge';
+import { useTheme } from "@emotion/react";
+//react
+import { Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Stack, styled, Typography, useMediaQuery } from "@mui/material";
+
+//use
+import { useEffect, useState } from "react";
+//stores
+import { useProductStore } from '../stores/useProductStore';
 import { useUserStore } from "../stores/useUserStore";
 import { useCartStore } from "../stores/useCartStore";
-import { Box, Button, Divider, Drawer, IconButton, List, ListItem, ListItemButton, ListItemText, Typography, useMediaQuery } from "@mui/material";
-import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
-import { useTheme } from "@emotion/react";
-import { Close } from "@mui/icons-material";
-import { useState } from "react";
+
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    right: -3,
+    top: 13,
+    border: `1px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}));
+
+
 
 const Navbar = () => {
 	const {  logout, user } = useUserStore();
   
 	const isAdmin = user?.role === "admin";
 
-	const { cart } = useCartStore();
+	const { cart, getCartItems } = useCartStore();
   const theme = useTheme()
 
+  const { fetchAllProducts } = useProductStore();
 
+  useEffect(() => {
+    fetchAllProducts()
+    },[fetchAllProducts])
+  
+    useEffect(() => {
+    getCartItems()
+    },[getCartItems])
+      
+  
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 const [anchorEl, setAnchorEl] = useState(null);
@@ -33,7 +64,6 @@ const handleMenuItemClick = (event, index) => {
 const handleClose = () => {
   setAnchorEl(null);
 };
-
 
 
 const [state, setState] = useState({
@@ -59,6 +89,7 @@ const toggleDrawer = (anchor, open) => (event) => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
+        <Stack direction="column" alignItems="center" justifyContent="space-between" sx={{ p: 2 }}>
         <Link
                 to="/"
                 style={{
@@ -67,7 +98,7 @@ const toggleDrawer = (anchor, open) => (event) => {
                   marginRight: '5px',
                 }}
               >
-              <Button sx={{color :theme.palette.text.primary, fontWeight: 700}} > 
+              <Button color="success" sx={{ fontWeight: 700}} > 
                 <Typography>home</Typography>
               </Button>
               </Link>
@@ -79,10 +110,13 @@ const toggleDrawer = (anchor, open) => (event) => {
                     transition: 'color 0.3s',
                   }}
                 >
-                  <Button sx={{color :theme.palette.text.primary, fontWeight: 700}} > 
-                  <ShoppingCart size={20} />
-                  <Typography sx={{ml: 1}}>Cart</Typography>
-              </Button>
+                  <Button color='info' aria-label="cart"sx={{position: 'relative'}}>
+                <ShoppingCartIcon sx={{px: 0, mx: 0}}/>
+                <StyledBadge badgeContent={cart.length} color="warning" sx={{position: 'absolute', top: -5, left: 10,
+                  bottom: 0, 
+                }} />
+                <Typography sx={{ml: 1}}>Cart</Typography>
+            </Button>
                   
                   {cart.length > 0 && (
                     <span
@@ -124,7 +158,7 @@ const toggleDrawer = (anchor, open) => (event) => {
   
               {user ? (
                 
-              <Button onClick={logout}  > 
+              <Button color='error' onClick={logout}  > 
                 <Typography>log out</Typography>
                 <PersonOutlinedIcon />
               </Button>
@@ -139,7 +173,7 @@ const toggleDrawer = (anchor, open) => (event) => {
                     fontSize: '16px',
                   }}
                 >
-              <Button  > 
+              <Button color='warning' > 
                 <Typography>sign up</Typography>
                 <PersonOutlinedIcon />
               </Button>
@@ -162,6 +196,7 @@ const toggleDrawer = (anchor, open) => (event) => {
                 </>
               )}
           
+      </Stack>
       </List>
       <Divider />
       
@@ -236,7 +271,7 @@ const toggleDrawer = (anchor, open) => (event) => {
                   marginRight: '5px',
                 }}
               >
-              <Button sx={{color :theme.palette.text.primary, fontWeight: 700}} > 
+              <Button color='success' sx={{ fontWeight: 700}} > 
                 <Typography>home</Typography>
               </Button>
               </Link>
@@ -249,10 +284,14 @@ const toggleDrawer = (anchor, open) => (event) => {
                     transition: 'color 0.3s',
                   }}
                 >
-                  <Button sx={{color :theme.palette.text.primary, fontWeight: 700}} > 
-                  <ShoppingCart size={20} />
-                  <Typography sx={{ml: 1}}>Cart</Typography>
-              </Button>
+              <Button color='info' aria-label="cart"sx={{position: 'relative'}}>
+                <ShoppingCartIcon sx={{px: 0, mx: 0, scale: 1.5}}/>
+                <StyledBadge badgeContent={cart.length} color="warning" sx={{position: 'absolute', top: -5, left: 10,
+                  bottom: 0, 
+                }} />
+                <Typography sx={{ml: 1}}>Cart</Typography>
+            </Button>
+
                   
                   {cart.length > 0 && (
                     <span
@@ -294,7 +333,7 @@ const toggleDrawer = (anchor, open) => (event) => {
   
               {user ? (
                 
-              <Button onClick={logout}  > 
+              <Button  color='error' onClick={logout}  > 
                 <Typography>log out</Typography>
                 <PersonOutlinedIcon />
               </Button>
@@ -309,7 +348,7 @@ const toggleDrawer = (anchor, open) => (event) => {
                     fontSize: '16px',
                   }}
                 >
-              <Button  > 
+              <Button  color='warning' > 
                 <Typography>sign up</Typography>
                 <PersonOutlinedIcon />
               </Button>

@@ -38,11 +38,12 @@ export const createProduct = async (req, res) => {
         const {name, price, description, image, rating, category, isFeatured} = req.body;
         let cloudinaryResponse = null
         if (image) {
-            cloudinaryResponse = await cloudinary.uploader.upload(image, {folder:"products"});
+            cloudinaryResponse = await cloudinary.uploader.upload(image, {folder:"products/image1"});
         }
         const product = await Product.create({
             name, price, description,
-            image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : "" ,
+            image: cloudinaryResponse?.secure_url ? cloudinaryResponse.secure_url : "/image1" ,
+           
             category,
             isFeatured,
             rating});
@@ -63,6 +64,7 @@ export const createProduct = async (req, res) => {
                 await cloudinary.uploader.destroy(`products/${publicId}`);
                 res.json({message: "Product deleted successfully"});
             }
+            
             await Product.findByIdAndDelete(req.params.id);
             res.json({message: "Product deleted successfully"});
         } catch (error) {
