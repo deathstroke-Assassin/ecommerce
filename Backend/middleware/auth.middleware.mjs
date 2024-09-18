@@ -1,5 +1,8 @@
 import jwt from "jsonwebtoken";
 import User from "../models/user.mjs";
+
+
+// create a protected route by checking it you have an access token  that expires every 15 minutes
 export const protectRoute = async (req, res, next) => {
     try {
         const accessToken = req.cookies.accessToken;

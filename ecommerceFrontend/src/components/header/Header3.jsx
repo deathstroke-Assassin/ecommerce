@@ -101,9 +101,11 @@ const list = (anchor) => (
 );
 
 const categoryLink = `category${categories[selectedIndex].href}`;
+const AllcategoryLink = `products`;
+
 
   return (
-    <Container sx={{display:"flex", alignItems: "center", justifyContent: "space-between"}}>
+    <Container sx={{display:"flex", alignItems: "center", justifyContent: "left", gap: 2}}>
       <Button variant="contained" sx={{
         width: 222,
         bgcolor: theme.palette.header3.main,
@@ -136,19 +138,19 @@ const categoryLink = `category${categories[selectedIndex].href}`;
 {!isLoading && <Link
                   to={categoryLink}
                   style={{
-                    padding: '10px 10px',
+                    padding: '0px 0px',
                     fontSize: '16px',
+                    maxWidth: '10px',
                   }}
                 >
-                  <Button variant="outlined" sx={{textTransform: "capitalize",    
-                  color: 'lemonchiffon',
+                  <Button variant="contained" sx={{textTransform: "capitalize",    
+                  color: 'lemonchiffon', bgcolor: theme.palette.header1.main,
                   mr: 94
 }}>
 
                 <Typography>Go to {categories[selectedIndex].name}</Typography>
               </Button>
                 </Link>}
-
       <Menu
         id="lock-menu"
         anchorEl={anchorEl}

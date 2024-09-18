@@ -1,6 +1,8 @@
 import { redis } from "../lib/redis.mjs";
 import Product from "../models/product.mjs";
 import cloudinary from "../lib/cloudinary.mjs";
+
+
 export const getAllProducts = async (req, res) => {
 try {
     const products = await Product.find({});

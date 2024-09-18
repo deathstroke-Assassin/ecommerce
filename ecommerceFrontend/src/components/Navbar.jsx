@@ -37,17 +37,11 @@ const Navbar = () => {
 	const { cart, getCartItems } = useCartStore();
   const theme = useTheme()
 
-  const { fetchAllProducts } = useProductStore();
-
   useEffect(() => {
-    fetchAllProducts()
-    },[fetchAllProducts])
-  
-    useEffect(() => {
     getCartItems()
     },[getCartItems])
-      
-  
+    
+
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 const [anchorEl, setAnchorEl] = useState(null);

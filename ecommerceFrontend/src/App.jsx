@@ -17,6 +17,7 @@ import { useEffect } from 'react';
 import { Container } from '@mui/material';
 import { useCartStore } from './stores/useCartStore';
 import { useProductStore } from './stores/useProductStore';
+import Main from './components/main/main';
 
 
 function App() {
@@ -97,6 +98,7 @@ useEffect(() => {
 				<Navbar />
         <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/products" element={<Main />} />
         <Route path="/signup" element={user ? <HomePage /> : <SignUpPage />} />
         <Route path="/login" element={ <LogInPage />} />
         <Route path="/secret-dashboard" element={user?.role === "admin" ? <AdminPage /> : <HomePage />} />

@@ -18,6 +18,7 @@ import { LogIn, LogOut } from "lucide-react";
 
 import { UserPlus, Lock } from "lucide-react";
 import ProductCard from "../../components/ProductCard";
+import axios from "../../lib/axios";
 
 
 
@@ -83,38 +84,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
-export default function Header2({ product}) {
+export default function Header2() {
 
 
   const [products, setProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-  useEffect(() => {
-    // Fetch products from an API
-    fetch('http://localhost:5000/api/products')
-      .then(response => response.json())
-      .then(data => {
-        if (Array.isArray(data.products)) {
-          setProducts(data.products);
-        } else {
-          console.error('API response does not contain products array:', data);
-          setProducts([]);
-        }
-      })
-      .catch(error => {
-        console.error('Error fetching products:', error);
-        setProducts([]);
-      });
-  }, []);
 
-  const handleSearch = (event) => {
-    setSearchQuery(event.target.value);
-    console.log(event.target.value)
-  };
-
-  const filteredProducts = products?.filter(product =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
