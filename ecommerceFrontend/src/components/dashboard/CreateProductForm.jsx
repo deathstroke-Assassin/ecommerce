@@ -86,7 +86,7 @@ const CreateProductForm = () => {
 
 
     return (
-        <Container sx={{alignItems: "center", direction: "column",}}>
+        <Container sx={{alignItems: "center", direction: "column", height: "200vh"}}>
             <Box sx={{ mt: 3,  pt: 2 }}>
                 <h2>Create New Product</h2>
                 <form onSubmit={handleSubmit}>

@@ -22,9 +22,9 @@ const LoginPage = () => {
 
   return (
 
-    <Container>
+    <Container sx={{ mt:10}}>
 
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 1.5rem' 
+      <div style={{ display: 'flex', flexDirection: 'column', padding: '3rem 1.5rem' 
         ,height: "900px" 
       }}>
         <motion.div
@@ -33,19 +33,19 @@ const LoginPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '2rem', fontWeight: 'bold',  }}>
+          <h2 style={{ marginTop: 'px', textAlign: 'center', fontSize: '2rem', fontWeight: 'bold',  }}>
             Log In
           </h2>
         </motion.div>
         
         <motion.div
-          style={{ marginTop: '2rem', margin: '0 auto', width: '100%', maxWidth: '28rem' }}
+          style={{ marginTop: '0rem', margin: '0 auto', width: '100%', maxWidth: '28rem' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <div style={{ width: '400px',height: "100%" , padding: '2rem 1rem', boxShadow: '  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)', borderRadius: '0.5rem',
-            backgroundColor: 'rgba(0, 0, 0, 0.2)'
+            backgroundColor: '#1F3947'
            }}>
             <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.5rem' }}>
               <div style={{width: '300px', display: "grid"}}>

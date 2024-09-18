@@ -24,25 +24,15 @@ function App() {
   const {getCartItems} = useCartStore()
 const [theme, colorMode] = useMode();
 const {user, checkAuth, checkingAuth} = useUserStore()
-const { fetchAllProducts , fetchProductsByCategory, isLoading} = useProductStore();
+const {  isLoading} = useProductStore();
 
-useEffect(() => {
-  fetchProductsByCategory('*')
-    },[fetchProductsByCategory, '*'])
-  
-  
+
 useEffect(() => {
   checkAuth()
-  },[checkAuth])
-
-  useEffect(() => {
   getCartItems()
-    },[getCartItems])
-  
-  
-    useEffect(() => {
-      fetchAllProducts()
-      },[fetchAllProducts])
+
+  }
+  ,[checkAuth, getCartItems, ])
     
     	if (isLoading) {
         return <div>Loading...</div>;

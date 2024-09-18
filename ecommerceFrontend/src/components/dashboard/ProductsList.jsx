@@ -9,7 +9,7 @@ import StarIcon from '@mui/icons-material/Star';
 import toast from "react-hot-toast";
 import { Delete } from "@mui/icons-material";
 const ProductsList = () => {
-  const { deleteProduct, toggleFeaturedProduct, products, } = useProductStore();
+  const { deleteProduct, products, } = useProductStore();
 
   console.log("products:", products);
   const columns = [
@@ -38,24 +38,7 @@ const ProductsList = () => {
       headerName: 'Category',
       width: 160,
     },
-    {
-      field: 'featured',
-      headerName: 'Featured',
-      width: 170,
-      
-      renderCell: (params) => (
-        <Button
-          onClick={() => toggleFeaturedProduct(params.row.id)}
-          variant="contained"
-          color={params.value ? "warning" : "default"}
-          startIcon={params.row.isFeatured ? <StarIcon /> : <StarBorderIcon />}
-          sx={{width: 130,mx:0}}
-        >
-          {params.value ? "Unfeature" : "Feature"}
-          
-        </Button>
-      ),
-    },
+  
     
     {
       field: "actions",
@@ -80,7 +63,7 @@ const ProductsList = () => {
     image: product.image,
     price: product.price,
     category: product.category,
-    isFeatured: product.isFeatured,
+
   }));
 
   const paginationModel = { page: 0, pageSize: 5 };
@@ -92,6 +75,7 @@ const ProductsList = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
+      style={{  height: "200vh"}}
     
     >
 

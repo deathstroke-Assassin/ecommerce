@@ -23,7 +23,7 @@ const CategoryPage = () => {
 	
     
     return (
-        <Stack direction={"column"} justifyContent={"center"} sx={{display:"flex", alignItems:"center", gap: 6 ,  flexDirection:{xs: "column", sm: "row"}}}>
+        <Stack direction={"column"} justifyContent={"center"} sx={{display:"flex", alignItems:"center", gap: 6 , height: "120vh" ,  flexDirection:{xs: "column", sm: "row"}}}>
 
         <div>
         

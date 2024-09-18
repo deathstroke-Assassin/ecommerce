@@ -30,8 +30,8 @@ export default function Main() {
     const { user, } = useUserStore();
 
     useEffect(() => {
-        fetchProductsByCategory('*')
-          },[fetchProductsByCategory, '*'])
+        fetchAllProducts()
+          },[fetchAllProducts])
         
         
     // const theme = useTheme();
@@ -55,11 +55,24 @@ export default function Main() {
         boxShadow: 24,
         p: 4,
     };
+
+    useEffect(() => {
+        // Check if the page has already been reloaded
+        if (!sessionStorage.getItem('reloaded')) {
+            window.location.reload();
+          sessionStorage.setItem('reloaded', 'true');
+        }
+      }, []);
+    
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+
  return (
 
 
     <Stack direction={"row"} flexWrap={"wrap"} justifyContent={"center"} sx={{ display: "flex", alignItems: "center", gap: 12, flexDirection: { xs: "column", sm: "row" } }}>
-
 
 
 

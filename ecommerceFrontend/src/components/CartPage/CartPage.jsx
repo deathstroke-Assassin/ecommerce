@@ -47,30 +47,22 @@ const CartItems = ({item}) => {
     const {cart, removeFromCart, updateQuantity} = useCartStore()
 
     return (
-        <Stack alignItems={"center"} display={"flex"}  flexGrow={1} direction={"row"} sx={{mx:0, my:2,backgroundColor: "#222", borderRadius: "10px", p: 0 }} >
+        <Stack alignItems={"center"} display={"flex"}   direction={"row"} sx={{mx:0, my:2,backgroundColor: "#1F3947", borderRadius: "10px", p: 0 }} >
                 
         
             <img width={"200px"} height={"200px"} src={item.image} alt="" />
         
-            <Typography sx={{mx: 4, my:9}}>{item.name}</Typography>
-                <Stack alignContent={"center"}  flexGrow={1} direction={"column"} sx={{mx:0, my:0, backgroundColor: "#222", borderRadius: "10px", p: 1}} >
-            <Button  sx={{maxWidth: 100}} 
-            onClick={() => updateQuantity(item._id, item.quantity + 1)}>
-            <AddIcon/>
-            </Button>
+            <Typography color="success" sx={{mx: 4, my:9}}>{item.name}</Typography>
+                <Stack alignContent={"center"}  flexGrow={1} direction={"column"} sx={{mx:0, my:0,  borderRadius: "10px", p: 0 }} >
 
-            <Button sx={{maxWidth: 100}} 
-            onClick={() => updateQuantity(item._id, item.quantity -= 1)}>
-            <RemoveIcon/>
-            </Button>
             
             <Button sx={{maxWidth: 100}} color="error" onClick={() => removeFromCart(item._id)}>
             <DeleteIcon/>
             </Button>
-            <Typography sx={{mx:0, my:9}} >Quantity: {item.quantity}</Typography>
+ 
 
         </Stack>
-        <Typography sx={{mx:0, my:9}} >Price </Typography>
+        <Typography color="success"  sx={{mx:0, my:9}} >Price </Typography>
 
             <Typography color="warning" sx={{mx: 4, my:9}} >$ {item.price}</Typography>
 

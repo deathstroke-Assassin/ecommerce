@@ -98,7 +98,7 @@ const ProductCard =  ({ product }) => {
                                             handleAddtoCart()
                                             
                                         }}
-                                            sx={{ textTransform: "capitalize",position: "absolute", bottom: "10px" }} size="large">
+                                            sx={{ textTransform: "capitalize",position: "absolute", bottom: "2%" }} size="large">
                                             <AddShoppingCartRoundedIcon sx={{ mr: 2 }} />
                                             add to cart
                                         </Button>
@@ -118,7 +118,7 @@ const ProductCard =  ({ product }) => {
                                                 </IconButton>
                                             </Box>
                                         </Modal>
-                                        <Button sx={{ textTransform: "capitalize", position: "absolute", bottom: "10px", right: "10px" }} size="large">
+                                        <Button sx={{ textTransform: "capitalize", position: "absolute", bottom: "2%" , right: "10px" }} size="large">
                                             <Rating precision={0.5} name="read-only" value={product.rating} readOnly />
                                         </Button>
                                     </CardActions>

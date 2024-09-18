@@ -2,6 +2,11 @@
 import { Box, Button, Stack, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
 import { useState } from "react";
+import { useCartStore } from "../../stores/useCartStore";
+import { useUserStore } from "../../stores/useUserStore";
+import toast from "react-hot-toast";
+
+
 
 export default function ProductDetials({ClickedProduct}) {
   const [selectedImg, setselectedImg] = useState(0)
@@ -12,6 +17,19 @@ export default function ProductDetials({ClickedProduct}) {
       setselectedImg(value)
     }
   };
+  const { addToCart } = useCartStore()
+
+  const {user} = useUserStore()
+
+  const handleAddtoCart = () => {
+    if (!user) {
+        toast.error("Please login to add product to cart", {id: "login"})
+        return;
+    } else {
+      addToCart(ClickedProduct)
+        
+}}
+
   return (
     <Stack direction={"row"} sx={{display:"flex", flexDirection:{xs: "column", sm: "row"}}}>
         
@@ -81,7 +99,11 @@ export default function ProductDetials({ClickedProduct}) {
         <Button variant="contained"
         sx={{mb: {xs: 3, md: 0}, mt: 6, textTransform:"capitalize", fontSize:"20px",
             fontWeight: 700, bottom: {xs: "40px", sm: "0"},
-        }}>
+        }}
+        onClick={() => {
+          handleAddtoCart()
+          
+      }}>
         <AddShoppingCartRoundedIcon sx={{mr: 2}}/>
         Buy Now
         </Button>
