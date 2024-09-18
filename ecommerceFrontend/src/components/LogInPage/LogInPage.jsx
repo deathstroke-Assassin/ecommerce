@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Button, CircularProgress, Container, Input, Stack, Typography } from "@mui/material";
 import { useUserStore } from "../../stores/useUserStore";
 import { useNavigate } from 'react-router-dom';
+import "../../index.css"
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -44,8 +45,8 @@ const LoginPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div style={{ width: '400px',height: "100%" , padding: '2rem 1rem', boxShadow: '  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)', borderRadius: '0.5rem',
-            backgroundColor: '#1F3947'
+          <div className="Dgradient" style={{ width: '400px',height: "100%" , padding: '2rem 1rem', boxShadow: '  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)', borderRadius: '0.5rem',
+            
            }}>
             <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.5rem' }}>
               <div style={{width: '300px', display: "grid"}}>

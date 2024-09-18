@@ -28,18 +28,6 @@ const HomePage = () => {
     <Box sx={{}}>
             <Hero />
 
-        { (products)? 
-                <Main
-                products={products}
-                >
-                </Main>
-              :
-                <div>
-                    {console.log("fuck >?")}
-                    <Typography variant="h5">Loading...</Typography>
-                </div>
-                
-                }
 </Box>
 <Box sx={{}}>
 <Footer></Footer>

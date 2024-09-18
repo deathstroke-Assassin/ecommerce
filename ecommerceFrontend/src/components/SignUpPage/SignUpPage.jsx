@@ -44,8 +44,8 @@ const SignUpPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-                <Container alignItems="center" > 
-          <div style={{ backgroundColor: '#1F3947', padding: '2rem 1rem', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)', borderRadius: '0.5rem' }}>
+                <Container className="Dgradient" alignItems="center" > 
+          <div style={{  padding: '2rem 1rem', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)', borderRadius: '0.5rem' }}>
             <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.5rem' }}>
               <div>
                 <label htmlFor='name' style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#D1D5DB' }}>
