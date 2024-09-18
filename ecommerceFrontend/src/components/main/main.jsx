@@ -120,7 +120,7 @@ export default function Main() {
                                     <Button onClick={() => {
                                         handleOpen()
                                         setClickedProduct(product)
-                                      
+                                    
                                     }}
                                         sx={{ textTransform: "capitalize" }} size="large">
                                         <AddShoppingCartRoundedIcon sx={{ mr: 2 }} />
