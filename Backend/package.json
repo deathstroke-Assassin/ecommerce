@@ -2,13 +2,13 @@
   "name": "backend",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "A node application",
   "scripts": {
-    "develop": "strapi develop",
-    "start": "strapi start",
-    "build": "strapi build",
-    "strapi": "strapi",
-    "deploy": "strapi deploy",
+
+    "start": "node server.mjs",
+    "build": "npm install",
+
+    
     "devmon": "nodemon server.mjs"
   },
   "dependencies": {

@@ -5,6 +5,7 @@ const productSchema = new mongoose.Schema({
     rating: {type: Number, min: 0, required: [false, "Rating is not required"]},
     description: {type: String, required: [true, "Description required"]},
     image: {type: String, required: [true, "Image required"]},
+   
     category: {type: String, required: [true, "Category required"]},
     isFeatured: {type: Boolean, default: false},
 },{timestamps: true,});

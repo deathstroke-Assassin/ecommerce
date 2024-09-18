@@ -120,3 +120,14 @@ option:focus {
   font-size: 0.875rem; /* equivalent to text-sm */
   color: #9ca3af; /* equivalent to text-gray-400 */
 }
+
+
+.gradient {
+  
+  background: linear-gradient(90deg, rgb(90, 182, 151) 0%, rgb(30, 182, 212) 100%);
+  border-radius: 10px;
+}
+.Dgradient {
+  background: linear-gradient(180deg, rgb(1, 57, 100) 0%, rgb(99, 180, 196) 100%);
+  border-radius: 10px;
+}

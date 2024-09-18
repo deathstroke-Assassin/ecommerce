@@ -1,27 +1,31 @@
 import { useState } from "react";
 import { LogIn } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link,   } from "react-router-dom";
 import { Mail, Lock, User, ArrowRight, Loader, UserPlus } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button, CircularProgress, Container, Input, Stack, Typography } from "@mui/material";
 import { useUserStore } from "../../stores/useUserStore";
-
+import { useNavigate } from 'react-router-dom';
+import "../../index.css"
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const { login, loading } = useUserStore();
+  const {user} = useUserStore()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-   
+  const handleSubmit = (event) => {
+    event.preventDefault();
     login({email, password});
+    navigate('/')
   };
 
   return (
-    <Container>
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 1.5rem' 
+
+    <Container sx={{ mt:10}}>
+
+      <div style={{ display: 'flex', flexDirection: 'column', padding: '3rem 1.5rem' 
         ,height: "900px" 
       }}>
         <motion.div
@@ -30,24 +34,25 @@ const LoginPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 style={{ marginTop: '1.5rem', textAlign: 'center', fontSize: '2rem', fontWeight: 'bold',  }}>
+          <h2 style={{ marginTop: 'px', textAlign: 'center', fontSize: '2rem', fontWeight: 'bold',  }}>
             Log In
           </h2>
         </motion.div>
-
+        
         <motion.div
-          style={{ marginTop: '2rem', margin: '0 auto', width: '100%', maxWidth: '28rem' }}
+          style={{ marginTop: '0rem', margin: '0 auto', width: '100%', maxWidth: '28rem' }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div style={{ width: '400px',height: "100%" , padding: '2rem 1rem', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)', borderRadius: '0.5rem' }}>
+          <div className="Dgradient" style={{ width: '400px',height: "100%" , padding: '2rem 1rem', boxShadow: '  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)', borderRadius: '0.5rem',
+            
+           }}>
             <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.5rem' }}>
               <div style={{width: '300px', display: "grid"}}>
                 <Stack direction={"row"} display={"flex"}>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-medium text-gray-300"
                   >
                     Email address
                   </label>
@@ -66,6 +71,8 @@ const LoginPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 className="block w-full px-3 py-2 pl-10 bg-gray-700 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                 placeholder="you@example.com"
+                sx={{ml: 0 ,".MuiInput-input": { ml: 2 }, ".MuiInput-underline": { ml: 20 }, backgroundColor: 'rgba(255, 255, 255, 0.0)'}}
+
               />
 
               </div>
@@ -79,8 +86,8 @@ const LoginPage = () => {
                   >
                     Password
                   </label>
-                  <div className="mt-1 relative rounded-md shadow-sm">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <div >
+                    <div >
                       <Lock style={{ marginLeft: 13 }} className="h-5 w-5 text-gray-400" aria-hidden="true" />
                     </div>
 
@@ -94,8 +101,13 @@ const LoginPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   className="block w-full px-3 py-2 pl-10 bg-gray-700 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                   placeholder="••••••••"
+                  sx={{ml: 0 ,".MuiInput-input": { ml: 2 }}}
                 />
               </div>
+
+
+
+
 
               <Button
                 type="submit"
@@ -118,6 +130,9 @@ const LoginPage = () => {
                   </>
                 )}
               </Button>
+
+             
+  
             </form>
 
             <p className="mt-8 text-center text-sm text-gray-400">
@@ -134,6 +149,7 @@ const LoginPage = () => {
 
       </div>
     </Container>
+                    
   );
 };
 

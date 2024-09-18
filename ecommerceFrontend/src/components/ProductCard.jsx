@@ -1,5 +1,5 @@
 import toast from "react-hot-toast"
-import { Box, Button, IconButton, Modal,
+import { Box, Button, CircularProgress, IconButton, Modal,
         Rating, Stack, Typography, } from "@mui/material";
 import { motion } from "framer-motion";
 import Card from "@mui/material/Card";
@@ -11,6 +11,9 @@ import { Close } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { useProductStore } from "../stores/useProductStore";
 import { useParams } from "react-router-dom";
+import { useUserStore } from "../stores/useUserStore";
+import { useCartStore } from "../stores/useCartStore";
+
 
 
 const ProductCard =  ({ product }) => {
@@ -24,18 +27,34 @@ const ProductCard =  ({ product }) => {
         fetchProductsByCategory(category)
     }, [fetchProductsByCategory, category])
     
-
-    
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const {user} = useUserStore()
+
+    const { addToCart } = useCartStore()
 
 
-if (isLoading) {
-    <div>Loading...</div>
-}
+    if (isLoading) {
+        return (
+            <Box>
+                <CircularProgress sx={{ textAlign: "center", py: 11 }} />
+            </Box>
+        )
+    }
+    
+  
+    const handleAddtoCart = () => {
+        if (!user) {
+            toast.error("Please login to add product to cart", {id: "login"})
+            return;
+        } else {
+                addToCart(product)
+            
+    }}
 
     if (product) {
+
         return (
             <Stack direction={"row"} justifyContent={"center"} sx={{display:"flex", alignItems:"center", gap: 6 ,  flexDirection:{xs: "column", sm: "row"}}}>
                 
@@ -76,10 +95,10 @@ if (isLoading) {
                                     </CardContent>
                                     <CardActions sx={{ justifyContent: "space-between" }}>
                                         <Button  onClick={() => {
-                                            handleOpen()
-                                            setClickedProduct(product)
+                                            handleAddtoCart()
+                                            
                                         }}
-                                            sx={{ textTransform: "capitalize",position: "absolute", bottom: "10px" }} size="large">
+                                            sx={{ textTransform: "capitalize",position: "absolute", bottom: "2%" }} size="large">
                                             <AddShoppingCartRoundedIcon sx={{ mr: 2 }} />
                                             add to cart
                                         </Button>
@@ -99,7 +118,7 @@ if (isLoading) {
                                                 </IconButton>
                                             </Box>
                                         </Modal>
-                                        <Button sx={{ textTransform: "capitalize", position: "absolute", bottom: "10px", right: "10px" }} size="large">
+                                        <Button sx={{ textTransform: "capitalize", position: "absolute", bottom: "2%" , right: "10px" }} size="large">
                                             <Rating precision={0.5} name="read-only" value={product.rating} readOnly />
                                         </Button>
                                     </CardActions>
@@ -113,3 +132,5 @@ if (isLoading) {
 }
 
 export default ProductCard
+
+

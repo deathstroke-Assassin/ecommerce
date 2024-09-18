@@ -22,6 +22,7 @@ const CreateProductForm = () => {
         price: "",
         category: "",
         image: "",
+       
         rating:"",
     });
 
@@ -37,6 +38,7 @@ const CreateProductForm = () => {
                 price: "",
                 category: "",
                 image: "",
+               
                 rating:"",
             });
         } catch {
@@ -55,8 +57,7 @@ const CreateProductForm = () => {
             reader.readAsDataURL(file); // base64
         }
     };
-
-
+    
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -85,7 +86,7 @@ const CreateProductForm = () => {
 
 
     return (
-        <Container sx={{alignItems: "center", direction: "column",}}>
+        <Container sx={{alignItems: "center", direction: "column", height: "200vh"}}>
             <Box sx={{ mt: 3,  pt: 2 }}>
                 <h2>Create New Product</h2>
                 <form onSubmit={handleSubmit}>
@@ -257,8 +258,12 @@ const CreateProductForm = () => {
 						<Upload sx={{ mr: 1 }} className='h-5 w-5 inline-block mr-2' />
 						Upload Image
 					</label>
-					{newProduct.image && <span className='ml-3 text-sm text-gray-400'>Image uploaded </span>}
+					{newProduct.image && <span className='ml-3 text-sm text-gray-400'>
+                        <img width={200}  src = {newProduct.image} />
+                         </span>}
 				</Button>
+                
+              
 
 
                     <Button
@@ -283,6 +288,7 @@ const CreateProductForm = () => {
                             </>
                         )}
                     </Button>
+                    {console.log(newProduct)}
                 </form>
             </Box>
         </Container>

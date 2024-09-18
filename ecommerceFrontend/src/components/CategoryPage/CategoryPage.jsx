@@ -20,9 +20,10 @@ const CategoryPage = () => {
         return <div>Loading...</div>;
     }
 
-    console.log("products filtered:", category , products)
+	
+    
     return (
-        <Stack direction={"column"} justifyContent={"center"} sx={{display:"flex", alignItems:"center", gap: 6 ,  flexDirection:{xs: "column", sm: "row"}}}>
+        <Stack direction={"column"} justifyContent={"center"} sx={{display:"flex", alignItems:"center", gap: 6 , height: "120vh" ,  flexDirection:{xs: "column", sm: "row"}}}>
 
         <div>
         
@@ -36,7 +37,7 @@ const CategoryPage = () => {
 					{category.charAt(0).toUpperCase() + category.slice(1)}
 				</motion.h1>
 
-				 <motion.div
+				<motion.div
 					className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center'
 					initial={{ opacity: 0, y: 20 }}
 					animate={{ opacity: 1, y: 0 }}
@@ -56,6 +57,7 @@ const CategoryPage = () => {
 						<ProductCard key={product._id} product={product} />
 					))}
 
+	{console.log("products filtered:", category , products)}
 					</Stack> 
 					</Box>
 				</motion.div>

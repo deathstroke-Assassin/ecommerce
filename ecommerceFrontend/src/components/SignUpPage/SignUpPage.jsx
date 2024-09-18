@@ -25,7 +25,7 @@ const SignUpPage = () => {
 
   return (
     
-    <Container>
+    <Container alignItems="center">
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 1.5rem',height: "950px"  }}>
         <motion.div
           style={{ margin: '0 auto', width: '100%', maxWidth: '28rem' }}
@@ -44,7 +44,8 @@ const SignUpPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div style={{ backgroundColor: '#1F2937', padding: '2rem 1rem', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)', borderRadius: '0.5rem' }}>
+                <Container className="Dgradient" alignItems="center" > 
+          <div style={{  padding: '2rem 1rem', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)', borderRadius: '0.5rem' }}>
             <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.5rem' }}>
               <div>
                 <label htmlFor='name' style={{ display: 'block', fontSize: '0.875rem', fontWeight: '500', color: '#D1D5DB' }}>
@@ -74,7 +75,7 @@ const SignUpPage = () => {
                       transition: 'border-color 0.2s, box-shadow 0.2s',
                     }}
                     placeholder='John Doe'
-                  />
+                    />
                 </div>
               </div>
 
@@ -207,6 +208,8 @@ const SignUpPage = () => {
 
 			
 				</div>
+        </Container>
+
         <p style={{marginTop: "2rem", textAlign: "center", fontSize: "0.875rem", color: "#718096", alignItems:"center"}}></p>
 					<p className='mt-8 text-center text-sm text-gray-400'>
           <Typography>

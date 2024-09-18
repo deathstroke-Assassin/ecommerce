@@ -2,35 +2,54 @@
 import { Box, Button, Stack, ToggleButton, ToggleButtonGroup, Typography } from "@mui/material";
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded';
 import { useState } from "react";
+import { useCartStore } from "../../stores/useCartStore";
+import { useUserStore } from "../../stores/useUserStore";
+import toast from "react-hot-toast";
+
+
 
 export default function ProductDetials({ClickedProduct}) {
   const [selectedImg, setselectedImg] = useState(0)
-  const [setAlignment] = useState('left');
+  const [setAlignment] = useState(ClickedProduct.image);
   const handleAlignment = (event, newAlignment) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
+      setselectedImg(value)
     }
   };
+  const { addToCart } = useCartStore()
+
+  const {user} = useUserStore()
+
+  const handleAddtoCart = () => {
+    if (!user) {
+        toast.error("Please login to add product to cart", {id: "login"})
+        return;
+    } else {
+      addToCart(ClickedProduct)
+        
+}}
+
   return (
     <Stack direction={"row"} sx={{display:"flex", flexDirection:{xs: "column", sm: "row"}}}>
         
         
             <Box sx={{display:"flex",mr: 5}} >
-                <img width={350} src={`${ClickedProduct.attributes.productImg.data[selectedImg].attributes.url}`} alt=""  />
+                <img width={350} src={`${ClickedProduct.image}`} alt=""  />
             </Box>
             <Box>
         <Typography variant="h5">
-        {ClickedProduct.attributes.productTitle}
+        {ClickedProduct.name}
         
         </Typography>
         <Typography color="#a90101"fontWeight={600} fontSize={"20px"} variant="h6">
       
-        ${ClickedProduct.attributes.productPrice}
+        ${ClickedProduct.price}
         </Typography>
 
         
         <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-          {ClickedProduct.attributes.productDescription}
+          {ClickedProduct.description}
           </Typography>
 
         <Stack direction={"row"} gap={3} marginTop={3}>
@@ -49,10 +68,11 @@ export default function ProductDetials({ClickedProduct}) {
       }}}
     >
 
-{ClickedProduct.attributes.productImg.data.map((item, index) => {
-    return (
-      <ToggleButton key={item.id}
-      value={index}
+
+
+      <ToggleButton 
+      value={ClickedProduct.image}
+      
       sx={{
         width:"150px",
         height:"200px",
@@ -66,17 +86,12 @@ export default function ProductDetials({ClickedProduct}) {
       <img
         width={"100%"}
         height={"100%"}
-        src={`${item.attributes.url}`}
-        onClick={() => {
-          setselectedImg(index)
-        }}
-        />
+        src={`${ClickedProduct.image}`}/>
+        
+
 
     </ToggleButton>
-        
-    )
-})}
-
+   
 
 </ToggleButtonGroup>
         </Stack>
@@ -84,7 +99,11 @@ export default function ProductDetials({ClickedProduct}) {
         <Button variant="contained"
         sx={{mb: {xs: 3, md: 0}, mt: 6, textTransform:"capitalize", fontSize:"20px",
             fontWeight: 700, bottom: {xs: "40px", sm: "0"},
-        }}>
+        }}
+        onClick={() => {
+          handleAddtoCart()
+          
+      }}>
         <AddShoppingCartRoundedIcon sx={{mr: 2}}/>
         Buy Now
         </Button>

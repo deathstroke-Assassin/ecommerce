@@ -47,6 +47,9 @@ export const getDesignTokens = (mode) => ({
           bggrey: {
             main: "#f1f1f1",
           },
+          bggrad: {
+            main: "hsla(255, 100%, 50%, 0.8)"
+          },
         }
       : {
           // palette values for dark mode
@@ -80,6 +83,9 @@ export const getDesignTokens = (mode) => ({
           },
           bggrey: {
             main: "#1d2021",
+          },
+          bggrad: {
+            main: "hsla(180, 100%, 50%, 0.8)"
           },
         }),
   },
