@@ -1,6 +1,5 @@
 
 import mongoose from "mongoose";
-import product from "../src/api/product/controllers/product.js";
 import bcrypt from 'bcryptjs';
 
 
