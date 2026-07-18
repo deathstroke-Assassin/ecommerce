@@ -8,7 +8,7 @@ import XIcon from '@mui/icons-material/X';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LanguageIcon from '@mui/icons-material/Language';
-
+import { useNavigate } from "react-router-dom";
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
@@ -40,6 +40,7 @@ export default function Header1() {
   };
   const { searchProducts } = useProductStore();
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
     return (
     <Box sx={{
         // @ts-ignore
@@ -84,7 +85,7 @@ export default function Header1() {
             onChange={(e) => setQuery(e.target.value)} placeholder="Search products"
             onKeyDown={(e) => {
     if (e.key === "Enter") {
-      searchProducts(query);
+      navigate(`/search?q=${query}`);
     }
   }}/>
     <Box flexGrow={0.5} />

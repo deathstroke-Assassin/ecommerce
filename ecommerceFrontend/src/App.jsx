@@ -6,7 +6,7 @@ import AdminPage from "./components/AdminPage/AdminPage";
 import CategoryPage from "./components/CategoryPage/CategoryPage";
 import AllCategoriesPage from "./components/CategoryPage/AllCategoriesPage";
 import CartPage from "./components/CartPage/CartPage";
-
+import SearchPage from "./components/SearchPage/SearchPage";
 
 import { CircularProgress, CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
@@ -22,14 +22,12 @@ import { use } from 'react';
 
 
 function App() {
-console.log("App rendered");
   const {getCartItems} = useCartStore()
 const [theme, colorMode] = useMode();
 const {user, checkAuth, checkingAuth} = useUserStore()
 
 
 useEffect(() => {
-  console.log("checkAuth effect fired");
   checkAuth()
   }
   ,[checkAuth ])
@@ -103,6 +101,7 @@ useEffect(() => {
         <Route path="/secret-dashboard" element={user?.role === "admin" ? <AdminPage /> : <HomePage />} />
         <Route path="/category/:category" element={ <CategoryPage />} />
         <Route path="/category" element={ <AllCategoriesPage />} />
+        <Route path="/search" element={ <SearchPage />} />
         <Route path="/cart" element={user ? <CartPage /> : <SignUpPage />} />
         </Routes>
         </div>

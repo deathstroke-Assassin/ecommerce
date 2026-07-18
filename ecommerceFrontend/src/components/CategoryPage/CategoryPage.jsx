@@ -11,7 +11,6 @@ const CategoryPage = () => {
   const { category } = useParams();
 
   useEffect(() => {
-              console.log("products filtered:", category, products)
     fetchProductsByCategory(category);
   }, [fetchProductsByCategory, category]);
 

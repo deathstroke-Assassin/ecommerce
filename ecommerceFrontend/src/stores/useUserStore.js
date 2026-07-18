@@ -30,7 +30,6 @@ login: async ({email,password}) => {
     try {
         const res = await axios.post("/auth/login", {email,password});
         set ({user: res.data, loading: false});
-        console.log("log in successful")
     } catch (error) {
         set ({ loading: false });
         toast.error(error.response.data.message) || "Something went wrong try later";
@@ -41,7 +40,6 @@ logout: async () => {
     try {
         await axios.post("/auth/logout");
         set ({user: null});
-        console.log("log out successful")
     } catch (error) {
         set ({ loading: false });
         toast.error(error.response.data.message) || "Something went wrong try later";
