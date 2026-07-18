@@ -23,10 +23,7 @@ const ProductCard =  ({ product }) => {
 
     const {fetchProductsByCategory} = useProductStore()
     const {category} = useParams()
-    useEffect(() => {
-        fetchProductsByCategory(category)
-    }, [fetchProductsByCategory, category])
-    
+
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);

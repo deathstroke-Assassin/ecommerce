@@ -79,9 +79,6 @@ useEffect(() => {
   fetchFeaturedProducts();
 }, [fetchFeaturedProducts]);
 
-useEffect(() => {
-  fetchProductsByCategory(category)
-}, [fetchProductsByCategory, category])
 
 const list = (anchor) => (
   <Box
@@ -114,7 +111,7 @@ const AllcategoryLink = `products`;
       }}
       onClick={handleClickListItem}>
 
-        <Typography sx={{
+        <Box sx={{
           padding: 0,
           textTransform: "capitalize",
           mx: 1
@@ -127,7 +124,7 @@ const AllcategoryLink = `products`;
           secondary={WindowOptions[selectedIndex]}
       />  
 
-          </Typography>
+          </Box>
           <Box   flexGrow={1}  ></Box>
         <ChevronRightIcon 
         />

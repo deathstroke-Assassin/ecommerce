@@ -25,7 +25,7 @@ const SignUpPage = () => {
 
   return (
     
-    <Container alignItems="center">
+    <Container sx={{ alignItems: "center" }}>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '3rem 1.5rem',height: "950px"  }}>
         <motion.div
           style={{ margin: '0 auto', width: '100%', maxWidth: '28rem' }}
@@ -44,7 +44,7 @@ const SignUpPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-                <Container className="Dgradient" alignItems="center" > 
+                <Container className="Dgradient" sx={{ alignItems: "center" }} > 
           <div style={{  padding: '2rem 1rem', boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)', borderRadius: '0.5rem' }}>
             <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.5rem' }}>
               <div>
@@ -211,7 +211,7 @@ const SignUpPage = () => {
         </Container>
 
         <p style={{marginTop: "2rem", textAlign: "center", fontSize: "0.875rem", color: "#718096", alignItems:"center"}}></p>
-					<p className='mt-8 text-center text-sm text-gray-400'>
+					<div className='mt-8 text-center text-sm text-gray-400'>
           <Typography>
 						Already have an account?{" "}
 						<Link to='/login' style={{alignItems:"center", fontSize:"1rem", color:"#71f096", }} >
@@ -220,7 +220,7 @@ const SignUpPage = () => {
               
 						</Link>
             </Typography>
-					</p>
+					</div>
 			</motion.div>
 		</div>
     </Container>

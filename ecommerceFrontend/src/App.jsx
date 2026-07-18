@@ -18,28 +18,27 @@ import { Container } from '@mui/material';
 import { useCartStore } from './stores/useCartStore';
 import { useProductStore } from './stores/useProductStore';
 import Main from './components/main/main';
+import { use } from 'react';
 
 
 function App() {
-
+console.log("App rendered");
   const {getCartItems} = useCartStore()
 const [theme, colorMode] = useMode();
 const {user, checkAuth, checkingAuth} = useUserStore()
-const {  isLoading} = useProductStore();
 
 
 useEffect(() => {
+  console.log("checkAuth effect fired");
   checkAuth()
-  getCartItems()
-
   }
-  ,[checkAuth, getCartItems, ])
-    
-    	if (isLoading) {
-        return <div>Loading...</div>;
-    }
+  ,[checkAuth ])
 
-	
+useEffect(() => {
+    if (user) {
+        getCartItems();
+    }
+}, [user]);
   return (
 
       <>

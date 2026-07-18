@@ -9,7 +9,7 @@ export const useUserStore = create((set, get) => ({
 
     user:null,
     loading:false,
-    chickingAuth:true,
+    checkingAuth:false,
     signup: async ({name,email,password,confirmPassword}) => {
         set ({ loading: true });
         if(password !== confirmPassword) {
@@ -39,7 +39,7 @@ login: async ({email,password}) => {
 logout: async () => {
     
     try {
-        const res = await axios.post("/auth/logout");
+        await axios.post("/auth/logout");
         set ({user: null});
         console.log("log out successful")
     } catch (error) {
@@ -49,12 +49,12 @@ logout: async () => {
 },
 
 checkAuth: async () => {
-    set ({ chickingAuth: true });
+    set ({ checkingAuth: true });
     try {
         const response = await axios.get("/auth/profile");
-        set ({user: response.data, chickingAuth: false});
+        set ({user: response.data, checkingAuth: false});
     } catch (error) {
-        set ({ chickingAuth: false,user: null});
+        set ({ checkingAuth: false,user: null});
        
     }
 },
@@ -71,7 +71,9 @@ refreshToken: async () => {
         return response.data;
     } catch (error) {
         set({ user: null, checkingAuth: false });
-        throw error;
+        if (error.response?.status === 401) {
+            throw error;
+        }
     }
 },
 }));
@@ -81,21 +83,30 @@ axios.interceptors.response.use(
     response => response,
     async error => {
         const originalRequest = error.config
+ if (
+      originalRequest.url.includes("/auth/login") ||
+      originalRequest.url.includes("/auth/signup") ||
+      originalRequest.url.includes("/auth/profile") ||
+      originalRequest.url.includes("/auth/logout") ||
+      originalRequest.url.includes("/auth/refresh-token")
+    ) {
+      return Promise.reject(error);
+    }
+
         if(error.response?.status === 401 && !originalRequest._retry) {
             originalRequest._retry = true
         try {
             if (refreshPromise) {
                 await refreshPromise
-                return axios(originalRequest)
-            }
-            
-            refreshPromise = useUserStore.getState().checkAuth()
+            } else {            
+            refreshPromise = useUserStore.getState().refreshToken()
             await refreshPromise
             refreshPromise = null
+         }
             return axios(originalRequest)
         } catch (error) {
             useUserStore.getState().logout()
-            return Promise.reject(refreshError)
+            return Promise.reject(error)
         }
         }
         return Promise.reject(error)

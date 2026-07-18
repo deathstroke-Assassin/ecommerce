@@ -36,11 +36,13 @@ const Navbar = () => {
 
 	const { cart, getCartItems } = useCartStore();
   const theme = useTheme()
+const { checkAuth, checkingAuth} = useUserStore()
 
-  useEffect(() => {
-    getCartItems()
-    },[getCartItems])
-    
+useEffect(() => {
+    if (user) {
+        getCartItems();
+    }
+}, [user]);
 
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -367,14 +369,14 @@ const toggleDrawer = (anchor, open) => (event) => {
             </nav>
           )}
             {useMediaQuery("(max-width:1200px)") && (
-            <
-// @ts-ignore
-            IconButton onClick={toggleDrawer("right", true)} sx={{
-              my: 0,
+            <IconButton onClick={toggleDrawer("right", true)} 
+            sx={{
+              ml: "auto",
               display: "flex",
               justifyContent: "space-between",
+              alignItems:"flex-end",
               textAlign: "right"}}
-              alignItems={"right"}>
+              >
             <MenuIcon />
       
             </IconButton>
