@@ -14,6 +14,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { SearchCheckIcon, SearchIcon } from "lucide-react";
+import { useProductStore } from "../../stores/useProductStore";
 
 const options = ['AR', 'EN', 'JP'];
 
@@ -36,7 +38,8 @@ export default function Header1() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const { searchProducts } = useProductStore();
+  const [query, setQuery] = useState("");
     return (
     <Box sx={{
         // @ts-ignore
@@ -74,9 +77,17 @@ export default function Header1() {
     variant="body2"
     >Free Shipping
     </Typography>
-
-    <Box flexGrow={1} />
-
+    <Box flexGrow={0.5} />
+    <SearchIcon />
+    
+      <input style={{marginLeft: "10px"}} type="search" value={query} 
+            onChange={(e) => setQuery(e.target.value)} placeholder="Search products"
+            onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      searchProducts(query);
+    }
+  }}/>
+    <Box flexGrow={0.5} />
 
         <Stack>
     {theme.palette.mode === "light" ? (

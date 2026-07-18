@@ -1,10 +1,12 @@
 import { create } from "zustand";
 import toast from "react-hot-toast";
 import axios from "../lib/axios";
+
 console.log("CategoryPage rendered");
-export const useProductStore = create((set) => ({
+export const useProductStore = create((set, get) => ({
   products: [],
   loading: false,
+  error: null,
 
   setProducts: (products) => set({ products }),
 
@@ -96,6 +98,20 @@ export const useProductStore = create((set) => ({
     } catch (error) {
       set({ error: "Failed to fetch products", loading: false });
       console.log("Error fetching featured products:", error);
+    }
+  },
+  searchProducts: async (query) => {
+    if (!query.trim()) {
+      return get().fetchAllProducts(); 
+    }
+    set({ loading: true,  error: null, });
+    try {
+      const response = await axios.get(`/products/search?q=${query}`);
+      set({ products: response.data.products, loading: false });
+}
+     catch (error) {
+      set({ error: "Failed to search products", loading: false });
+      console.log("Error searching products:", error);
     }
   },
 }));
