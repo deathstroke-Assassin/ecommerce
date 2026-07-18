@@ -8,7 +8,7 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import "./styles.css"
-import IconSection from "./iconSection";
+import IconSection from "./IconSection";
 export default function Hero() {
     return (
     <Container >
