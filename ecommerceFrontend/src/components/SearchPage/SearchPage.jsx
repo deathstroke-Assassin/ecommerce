@@ -3,7 +3,7 @@ import { useProductStore } from "../../stores/useProductStore";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import ProductCard from "../ProductCard";
-import { Box, Stack } from "@mui/material";
+import { Box, Input, Stack } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { SearchCheckIcon, SearchIcon } from "lucide-react";
@@ -48,7 +48,7 @@ const SearchPage = () => {
         
         <SearchIcon style={{marginBottom:"-7px", textAlign: "center", alignItems:"center"}} />
       
-        <input
+        <Input
           style={{ marginLeft: "10px" ,marginBottom:"10px", textAlign: "center", alignItems:"center"}}
           type="search"
           value={searchText}

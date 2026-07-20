@@ -11,11 +11,12 @@ import {
   MenuItem,
   Stack,
   Typography,
+  useMediaQuery,
   useTheme,
 } from "@mui/material";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
+ 
 const AllCategoriesPage = () => {
   const categories = [
     {
@@ -54,9 +55,11 @@ const AllCategoriesPage = () => {
       imageUrl: "/images/categories/suits.jpg",
     },
   ];
+ const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <Container sx={{ justifyContent: "center", alignItems: "center", mt: 20 }}>
+    <Container sx={{ justifyContent: "space-evenly" , alignItems: "center", mt: 10 }}>
       <Typography
         sx={{
           color: "text.primary",
@@ -69,10 +72,9 @@ const AllCategoriesPage = () => {
       >
         Categories
       </Typography>
-
       <Stack
         direction={"row"}
-        sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}
+        sx={{ display: "flex", flexWrap: "wrap", gap: 2, justifyContent: "space-evenly" }}
       >
         {categories.map((option, index) => (
           <Card
@@ -83,7 +85,7 @@ const AllCategoriesPage = () => {
             transition={{ duration: 1.5, type: "spring", stiffness: 50 }}
             key={option.name}
             sx={{
-              flexBasis: "calc(33.333% - 16px)", // Adjust the percentage as needed
+              flexBasis: "calc(44.333% - 16px)", // Adjust the percentage as needed
               flexGrow: 1,
               maxWidth: "345px",
               mt: 6,

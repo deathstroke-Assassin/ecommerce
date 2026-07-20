@@ -3,7 +3,7 @@ import { useProductStore } from "../../stores/useProductStore";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import ProductCard from "../../components/ProductCard";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, useMediaQuery, useTheme } from "@mui/material";
 
 const CategoryPage = () => {
   const { products, isLoading, fetchProductsByCategory } = useProductStore();
@@ -13,24 +13,26 @@ const CategoryPage = () => {
   useEffect(() => {
     fetchProductsByCategory(category);
   }, [fetchProductsByCategory, category]);
+const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
-
   return (
     <Stack
-      direction={"column"}
+      direction={"row"}
       justifyContent={"center"}
       sx={{
         display: "flex",
         alignItems: "center",
         gap: 6,
-        height: "120vh",
+        
         flexDirection: { xs: "column", sm: "row" },
       }}
     >
-      <div>
+      <div 
+      >
         <motion.h1
           className="text-center text-4xl sm:text-5xl font-bold text-emerald-400 mb-8"
           initial={{ opacity: 0, y: -20 }}
@@ -46,9 +48,10 @@ const CategoryPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <Box direction={"row"} justifyContent={"center"} gap={6}>
-            <Stack direction={"row"} justifyContent={"center"} gap={6}>
+        > 
+          
+            <Stack direction={"row"} justifyContent={"space-evenly"} gap={6}
+           sx={{display: "flex",flexWrap: "wrap"}} >
               {products?.length === 0 && (
                 <h2 className="text-3xl font-semibold text-gray-300 text-center col-span-full">
                   No products found
@@ -61,7 +64,7 @@ const CategoryPage = () => {
                 ))}
 
             </Stack>
-          </Box>
+          
         </motion.div>
       </div>
     </Stack>

@@ -26,10 +26,10 @@ const LoginPage = () => {
     <Container sx={{ mt:10}}>
 
       <div style={{ display: 'flex', flexDirection: 'column', padding: '3rem 1.5rem' 
-        ,height: "900px" 
+        ,
       }}>
         <motion.div
-          style={{ margin: '0 auto', width: '100%', maxWidth: '28rem' }}
+          style={{ margin: '0 auto',  }}
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -45,13 +45,13 @@ const LoginPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="Dgradient" style={{ width: '400px',height: "100%" , padding: '2rem 1rem', boxShadow: '  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)', borderRadius: '0.5rem',
+          <div className="Dgradient" style={{ height: "100%" , padding: '2rem 1rem', boxShadow: '  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)', borderRadius: '0.5rem',
             
            }}>
             <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '1.5rem' }}>
-              <div style={{width: '300px', display: "grid"}}>
-                <Stack direction={"row"} display={"flex"}>
-                  <label
+              <div style={{ display: "grid"}}>
+                <Stack direction={"row"} display={"flex"} style={{fontSize: '0.875rem', fontWeight: '500', color: '#D1D5DB' }}>
+                  <label 
                     htmlFor="email"
                   >
                     Email address
@@ -72,14 +72,24 @@ const LoginPage = () => {
                 className="block w-full px-3 py-2 pl-10 bg-gray-700 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                 placeholder="you@example.com"
                 sx={{ml: 0 ,".MuiInput-input": { ml: 2 }, ".MuiInput-underline": { ml: 20 }, backgroundColor: 'rgba(255, 255, 255, 0.0)'}}
-
+                style={{display: 'block',
+                      width: '100%',
+                      padding: '0.5rem 0.75rem 0.5rem 2.5rem',
+                      backgroundColor: '#374151',
+                      border: '1px solid #4B5563',
+                      borderRadius: '0.375rem',
+                      boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
+                      color: '#D1D5DB',
+                      fontSize: '0.875rem',
+                      outline: 'none',
+                      transition: 'border-color 0.2s, box-shadow 0.2s',}}
               />
 
               </div>
               
 
-              <div style={{width: '300px', height: '50px', display: "grid"}}>
-                <Stack direction={"row"} display={"flex"}>
+              <div style={{ height: '50px', display: "grid"}}>
+                <Stack direction={"row"} display={"flex"} style={{fontSize: '0.875rem', fontWeight: '500', color: '#D1D5DB' }}>
                   <label
                     htmlFor="password"
                     className="block text-sm font-medium text-gray-300"
@@ -101,6 +111,19 @@ const LoginPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                   className="block w-full px-3 py-2 pl-10 bg-gray-700 border border-gray-600 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
                   placeholder="••••••••"
+                  style={{
+                    display: 'block',
+                      width: '100%',
+                      padding: '0.5rem 0.75rem 0.5rem 2.5rem',
+                      backgroundColor: '#374151',
+                      border: '1px solid #4B5563',
+                      borderRadius: '0.375rem',
+                      boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)',
+                      color: '#D1D5DB',
+                      fontSize: '0.875rem',
+                      outline: 'none',
+                      transition: 'border-color 0.2s, box-shadow 0.2s',
+                  }}
                   sx={{ml: 0 ,".MuiInput-input": { ml: 2 }}}
                 />
               </div>
@@ -113,7 +136,18 @@ const LoginPage = () => {
                 type="submit"
                 className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-150 ease-in-out disabled:opacity-50"
                 disabled={loading}
-                sx={{ color: "white", fontWeight: 700 }}
+                sx={{  fontWeight: 700 }}
+                style={{width: '100%',
+								display: 'flex',
+								justifyContent: 'center',
+								padding: '0.5rem 1rem',
+								borderRadius: '0.375rem',
+								boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+								color: 'white',
+								backgroundColor: '#34D399',
+								border: 'none',
+								cursor: 'pointer',
+								transition: 'background-color 0.2s ease-in-out',}}
               >
                 {loading ? (
                   <>
