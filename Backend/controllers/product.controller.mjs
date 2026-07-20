@@ -130,7 +130,6 @@ export const toggleFeaturedProducts = async (req, res) => {
     } else {
       return res.status(404).json({ message: "Product not found" });
     }
-    res.json({ message: "Product updated successfully" });
   } catch (error) {
     console.log("Error in toggleFeaturedProducts controller", error.message);
     res.status(500).json({ message: "Server Error", error: error.message });
