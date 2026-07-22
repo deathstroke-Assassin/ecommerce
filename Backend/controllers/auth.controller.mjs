@@ -41,8 +41,7 @@ const setCookies = (res, accessToken, refreshToken) => {
 };
 
 export const signup = async (req, res) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
-  console.log(`Access-Control-Allow-Origin', 'http://localhost:5173'`);
+
   const { email, password, name } = req.body;
   try {
     const userExists = await User.findOne({ email });
