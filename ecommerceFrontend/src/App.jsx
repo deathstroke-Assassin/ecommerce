@@ -145,10 +145,11 @@ function App() {
               </Routes>
             </div>
             <Toaster
-              position="bottom-center"
-              gutter={8}
-              toastOptions={{
-                duration: 3000,
+              containerStyle={{
+                position: "fixed",
+                left: "50%",
+                bottom: "20px",
+                transform: "translateX(-50%)",
               }}
             />
           </div>
