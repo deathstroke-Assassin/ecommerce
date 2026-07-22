@@ -21,7 +21,7 @@ export const useUserStore = create((set, get) => ({
             set ({user: res.data, loading: false});
         } catch (error) {
             set ({ loading: false });
-            toast.error(error.response.data.message) || "Something went wrong try later";
+            toast.error(error.response?.data?.message) || "Something went wrong try later";
         }
     },
     
